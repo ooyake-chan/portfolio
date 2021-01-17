@@ -1,79 +1,27 @@
 import React from "react"
+import { graphql } from "gatsby"
 
-export default function Home() {
+import  Img  from "gatsby-image"
+
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+
+export const query = graphql`
+  query {
+    file(relativePath: {eq: "aboutme.jpg"}) {
+      childImageSharp {
+        fluid{
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
+
+export default ({ data, location }) => {
   return (
-    <div>
-  <meta charSet="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  {/* <link rel="stylesheet" href="./doctor.css" /> */}
-  {/* <link rel="stylesheet" href="./style.css" /> */}
-  <title>Document</title>
-  <header>
-    <h1>miki's portfolio</h1>
-    <nav className="nav__gloval">
-      <ul className="nav__gloval--primary-list">
-        <li>
-          <a href="">トップページ /</a>
-        </li>
-        <li>
-          <p>制作物 /</p>
-          <ul className="nav__gloval--secondary-list">
-            <li><a href="/work/slug">ポートフォリオサイト</a></li>
-            <li><a href="/work/slug">ラビットテニススクール</a></li>
-            <li><a href="/work/slug">ラジオ体操カード</a></li>
-            <li><a href="/work/slug">麻雀計算機</a></li>
-            <li><a href="/work/slug">Rcom.com</a></li>
-            <li><a href="/work/slug">橋下クリニック</a></li>
-          </ul>
-        </li>
-        <li>
-          <p>その他の制作物 /</p>
-          <ul className="nav__gloval--secondary-list">
-            <li><a href="/work/slug">まるたろう君の1日</a></li>
-            <li><a href="/work/slug">まるたろう君（クリスマス）</a></li>
-            <li><a href="/work/slug">まるたろう君（不思議の国）</a></li>
-            <li><a href="/work/slug">展示-はじめまして公園</a></li>
-            <li><a href="/work/slug">gifアニメーション</a></li>
-            <li><a href="/work/slug">LINEスタンプ</a></li>
-          </ul>
-        </li>
-        <li><a href="/blog/">ブログ /</a></li>
-      </ul>
-    </nav>
-    <nav className="nav__local">
-      <ul>
-        <li className="nav-local-active" id="local-hero">
-          <a href="">ポートフォリオサイト</a>
-        </li>
-        <li id="local-rabbit">
-          <a href="#summary-rabbit">ラビットテニススクール</a>
-        </li>
-        <li id="local-radio">
-          <a href="#summary-radio">ラジオ体操カード</a>
-        </li>
-        <li id="local-mahjong">
-          <a href="#summary-mahjong">麻雀計算機</a>
-        </li>
-        <li>
-          <a href="">ポートフォリオサイト</a>
-        </li>
-        <li>
-          <a href="">ポートフォリオサイト</a>
-        </li>
-        <li id="local-others">
-          <a href="#home__others-id">others</a>
-        </li>
-        <li id="local-blog">
-          <a href="#home__blog-id">blog</a>
-        </li>
-        <li id="local-about">
-          <a href="#home__about-id">about me</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  {/* header */}
-  {/* body */}
+<Layout >
+<SEO pagepath={location.pathname}/>
   <div className="home__heroimage">
     <h2 id="hero-head">portfolio</h2>
     <div id="particle-canvas" />
@@ -85,12 +33,12 @@ export default function Home() {
     <div className="home__works-summary" id="summary-rabbit">
       <h3 className="floatleft">ラビットテニススクール</h3>
       <time className="clear">2021年1月</time>
-      <img src="/image/heroImgTennis.png" alt=""/>
+      <img src="/images/heroImgTennis.png" alt="" />
       <div className="wrap__works-summary">
         <div className="home__works-summary--info">
           <section>
             <h4>アドレス</h4>
-            <a href="#">http://www.rabbittennis.com</a>
+            <a>http://www.rabbittennis.com</a>
           </section>
           <section>
             <h4>開発環境</h4>
@@ -142,7 +90,7 @@ export default function Home() {
     <div className="home__works-summary" id="summary-radio">
       <h3 className="floatleft">ラジオ体操カード</h3>
       <time className="clear">2021年1月</time>
-      <img src="/image/heroImgTennis.png" alt="" />
+      <img src="/images/heroImgTennis.png" alt="" />
       <div className="wrap__works-summary">
         <div className="home__works-summary--info">
           <section>
@@ -199,7 +147,7 @@ export default function Home() {
     <div className="home__works-summary" id="summary-mahjong">
       <h3 className="floatleft">ラビットテニススクール</h3>
       <time className="clear">2021年1月</time>
-      <img src="/image/heroImgTennis.png" alt="" />
+      <img src="/images/heroImgTennis.png" alt="" />
       <div className="wrap__works-summary">
         <div className="home__works-summary--info">
           <section>
@@ -263,19 +211,19 @@ export default function Home() {
       <div className="home__others--summary">
         <time>2020年12月</time>
         <h3>作品タイトル</h3>
-        <img src="/image/otherMaru.JPG" alt="" />
+        <img src="/images/otherMaru.JPG" alt="" />
         <a href="#">詳細ページ</a>
       </div>
       <div className="home__others--summary">
         <time>2020年12月</time>
         <h3>作品タイトル</h3>
-        <img src="/image/otherMaru.JPG" alt="" />
+        <img src="/images/otherMaru.JPG" alt="" />
         <a href="#">詳細ページ</a>
       </div>
       <div className="home__others--summary">
         <time>2020年12月</time>
         <h3>作品タイトル</h3>
-        <img src="/image/otherMaru.JPG" alt="" />
+        <img src="/images/otherMaru.JPG" alt="" />
         <a href="#">詳細ページ</a>
       </div>
     </div>
@@ -290,21 +238,21 @@ export default function Home() {
         <time>2020年12月</time>
         <h3>ブログタイトル</h3>
         <a>category</a>
-        <img src="/image/otherMaru.JPG" alt="" />
+        <img src="/images/otherMaru.JPG" alt="" />
+        <a >詳細ページ</a>
+      </article>
+      <article className="home__blog--post">
+        <time>2020年12月</time>
+        <h3>ブログタイトル</h3>
+        <a>category</a>
+        <img src="/images/otherMaru.JPG" alt="" />
         <a href="#">詳細ページ</a>
       </article>
       <article className="home__blog--post">
         <time>2020年12月</time>
         <h3>ブログタイトル</h3>
         <a>category</a>
-        <img src="/image/otherMaru.JPG" alt="" />
-        <a href="#">詳細ページ</a>
-      </article>
-      <article className="home__blog--post">
-        <time>2020年12月</time>
-        <h3>ブログタイトル</h3>
-        <a>category</a>
-        <img src="/image/otherMaru.JPG" alt="" />
+        <img src="/images/otherMaru.JPG" alt="" />
         <a href="#">詳細ページ</a>
       </article>
     </div>
@@ -316,7 +264,9 @@ export default function Home() {
     <div className="home__about" id="home__about-id">
       <h3>村松美紀</h3>
       <p>1992.11.5</p>
-      <img src="/image/aboutme.jpg" alt="" />
+      <div className="about-img">
+        <Img fluid={ data.file.childImageSharp.fluid } />
+        </div>
       <div className="wrap__about">
         <div className="home__about--info">
           <section>
@@ -345,12 +295,7 @@ export default function Home() {
       </div>
     </div>
   </div>
-  {/* body */}
-  {/* footer */}
-  <footer>
-    <small>Copyright ©︎ ooyakechan works</small>
-  </footer>
-</div>
+  </Layout>
 
   )
 }
