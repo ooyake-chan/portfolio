@@ -38,7 +38,7 @@ export default ({ data, location }) => {
         <div className="home__works-summary--info">
           <section>
             <h4>アドレス</h4>
-            <a>http://www.rabbittennis.com</a>
+            <a href=" {`/`}">http://www.rabbittennis.com</a>
           </section>
           <section>
             <h4>開発環境</h4>
@@ -74,7 +74,7 @@ export default ({ data, location }) => {
           </section>
           <section>
             <h4>Github</h4>
-            <a href="#">http://www.rabbittennis.com</a>
+            <a href=" {`/`}">http://www.rabbittennis.com</a>
           </section>
           <section>
             <h4>コンセプト</h4>
@@ -85,7 +85,7 @@ export default ({ data, location }) => {
           <svg id="tool-slug" />
         </div>
       </div>
-      <a href="#">詳細ページ</a>
+      <a href=" {`/`}">詳細ページ</a>
     </div>
     <div className="home__works-summary" id="summary-radio">
       <h3 className="floatleft">ラジオ体操カード</h3>
@@ -95,7 +95,7 @@ export default ({ data, location }) => {
         <div className="home__works-summary--info">
           <section>
             <h4>アドレス</h4>
-            <a href="#">http://www.rabbittennis.com</a>
+            <a href=" {`/`}">http://www.rabbittennis.com</a>
           </section>
           <section>
             <h4>開発環境</h4>
@@ -131,7 +131,7 @@ export default ({ data, location }) => {
           </section>
           <section>
             <h4>Github</h4>
-            <a href="#">http://www.rabbittennis.com</a>
+            <a href=" {`/`}">http://www.rabbittennis.com</a>
           </section>
           <section>
             <h4>コンセプト</h4>
@@ -142,7 +142,7 @@ export default ({ data, location }) => {
           {/* <svg id="tool-slug"></svg> */}
         </div>
       </div>
-      <a href="#">詳細ページ</a>
+      <a href=" {`/`}">詳細ページ</a>
     </div>
     <div className="home__works-summary" id="summary-mahjong">
       <h3 className="floatleft">ラビットテニススクール</h3>
@@ -152,7 +152,7 @@ export default ({ data, location }) => {
         <div className="home__works-summary--info">
           <section>
             <h4>アドレス</h4>
-            <a href="#">http://www.rabbittennis.com</a>
+            <a href=" {`/`}">http://www.rabbittennis.com</a>
           </section>
           <section>
             <h4>開発環境</h4>
@@ -188,7 +188,7 @@ export default ({ data, location }) => {
           </section>
           <section>
             <h4>Github</h4>
-            <a href="#">http://www.rabbittennis.com</a>
+            <a href=" {`/`}">http://www.rabbittennis.com</a>
           </section>
           <section>
             <h4>コンセプト</h4>
@@ -199,7 +199,7 @@ export default ({ data, location }) => {
           {/* <div id="tool-slug"></div> */}
         </div>
       </div>
-      <a href="#">詳細ページ</a>
+      <a href=" {`/`}">詳細ページ</a>
     </div>
   </div>
   {/* works */}
@@ -212,19 +212,19 @@ export default ({ data, location }) => {
         <time>2020年12月</time>
         <h3>作品タイトル</h3>
         <img src="/images/otherMaru.JPG" alt="" />
-        <a href="#">詳細ページ</a>
+        <a href=" {`/`}">詳細ページ</a>
       </div>
       <div className="home__others--summary">
         <time>2020年12月</time>
         <h3>作品タイトル</h3>
         <img src="/images/otherMaru.JPG" alt="" />
-        <a href="#">詳細ページ</a>
+        <a href=" {`/`}">詳細ページ</a>
       </div>
       <div className="home__others--summary">
         <time>2020年12月</time>
         <h3>作品タイトル</h3>
         <img src="/images/otherMaru.JPG" alt="" />
-        <a href="#">詳細ページ</a>
+        <a href=" {`/`}">詳細ページ</a>
       </div>
     </div>
   </div>
@@ -237,26 +237,26 @@ export default ({ data, location }) => {
       <article className="home__blog--post">
         <time>2020年12月</time>
         <h3>ブログタイトル</h3>
-        <a>category</a>
+        <a href="{`/`}">category</a>
         <img src="/images/otherMaru.JPG" alt="" />
-        <a >詳細ページ</a>
+        <a href="{`/`}">詳細ページ</a>
       </article>
       <article className="home__blog--post">
         <time>2020年12月</time>
         <h3>ブログタイトル</h3>
-        <a>category</a>
+        <a href="{`/`}">category</a>
         <img src="/images/otherMaru.JPG" alt="" />
-        <a href="#">詳細ページ</a>
+        <a href=" {`/`}">詳細ページ</a>
       </article>
       <article className="home__blog--post">
         <time>2020年12月</time>
         <h3>ブログタイトル</h3>
-        <a>category</a>
+        <a href="{`/`}">category</a>
         <img src="/images/otherMaru.JPG" alt="" />
-        <a href="#">詳細ページ</a>
+        <a href=" {`/`}">詳細ページ</a>
       </article>
     </div>
-    <a href="#">ブログトップページへ</a>
+    <a href=" {`/`}">ブログトップページへ</a>
   </div>
   <h2 id="about-head" className="home__about--headbg">about me</h2>
   <div id="trigger-fourth" />

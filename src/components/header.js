@@ -43,7 +43,7 @@ export default ()=>{
           <nav className="nav__local">
             <ul>
               <li className="nav-local-active" id="local-hero">
-                <a>ポートフォリオサイト</a>
+                <a href="{`/`}">ポートフォリオサイト</a>
               </li>
               <li id="local-rabbit">
                 <a href="#summary-rabbit">ラビットテニススクール</a>
@@ -55,10 +55,10 @@ export default ()=>{
                 <a href="#summary-mahjong">麻雀計算機</a>
               </li>
               <li>
-                <a>ポートフォリオサイト</a>
+                <a href="{`/`}">ポートフォリオサイト</a>
               </li>
               <li>
-                <a>ポートフォリオサイト</a>
+                <a href="{`/`}">ポートフォリオサイト</a>
               </li>
               <li id="local-others">
                 <a href="#home__others-id">others</a>
