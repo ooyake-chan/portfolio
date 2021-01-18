@@ -1,0 +1,33 @@
+$main-color: #3F4A88;
+$text-color: #BDB26F ;
+$link-color: #62B1E2 ;
+$visited-color: #FF6C6C ;
+
+* {
+    box-sizing: border-box;
+    list-style: none;
+}
+a{
+    color: $link-color;
+    text-decoration: none;
+    :visited{
+        color: $visited-color;
+    }
+}
+body{
+    padding: 60px;
+    background-color: $main-color;
+    color: $text-color;
+    font-family:  '游ゴシック', 'Arial', 'メイリオ', 'ヒラギノ角ゴ ProN', sans-serif;
+    font-size: 16px;
+}
+
+.floatleft{
+    float: left;
+}
+.clear{
+    clear: both;
+}
+.flex{
+    display: flex;
+}
