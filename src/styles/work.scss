@@ -1,0 +1,99 @@
+@import "../styles/settings";
+
+.work{
+    margin:0  auto;
+    padding-top: 25vh;
+    h2{
+        position: absolute;
+        top: 15vh;
+        right: 60px;
+    }
+    h3{
+        font-size: 1.25rem;
+        margin:0.5rem 0;
+    }
+    >div{
+        margin-bottom: 30px;
+        padding-bottom:30px ;
+        border-bottom: 1px solid;
+    }
+    >img{
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+    }
+    .summary{
+        display: flex;
+        justify-content: space-between;
+        &__list , &__concept{
+            width: 50%;
+        }
+        section{
+            display: flex;
+            margin-top: $margin-headings;
+        }
+        h4{
+            margin-right: 0.5em;
+        }
+        ul{
+            display: flex;
+        }
+    }
+
+    .toolmap{
+        h4{
+            margin-bottom: $margin-headings;
+        }
+        svg{
+            width: 100%;
+            height: 25vh;
+        }
+    }
+
+    .detail{
+        section{
+            margin-bottom: 3rem;
+        }
+        section:last-of-type{
+            margin-bottom: 0;
+        }
+        h4{
+            margin-bottom: $margin-headings;
+        }
+        h5{
+            margin-bottom: $margin-texts;
+        }
+        p{
+            line-height: 1.25em;
+        }
+        img{
+            width: 100%;
+        }
+    }
+
+}
+.blog{
+    margin-bottom: $margin-contents;
+    h3 span{
+        font-weight: 100;
+        font-size: 1rem;
+    }
+    article{
+        margin: 30px 0;
+        >div{
+            h1{
+                margin: $margin-texts 0;
+            }
+            width: 33%;
+            img{
+                width:100%;
+            }
+        }
+    }
+}
+
+.post-link{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $margin-contents;
+}

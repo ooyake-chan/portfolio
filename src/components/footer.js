@@ -2,7 +2,7 @@ import React from "react"
 
 export default ()=>{
     return (
-        <footer>
+        <footer className="copyright">
         <small>Copyright ©︎ ooyakechan works</small>
       </footer>
     )
