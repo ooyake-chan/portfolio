@@ -1,6 +1,6 @@
 import React from "react"
 
-export default ()=>{
+export default ( {local} )=>{
     return (
         <div>
         <meta charSet="UTF-8" />
@@ -13,7 +13,7 @@ export default ()=>{
           <nav className="nav__gloval">
             <ul className="nav__gloval--primary-list">
               <li>
-                <a href="{`/`}">トップページ /</a>
+                <a href="http://localhost:8000/">トップページ /</a>
               </li>
               <li>
                 <p>制作物 /</p>
@@ -41,35 +41,7 @@ export default ()=>{
             </ul>
           </nav>
           <nav className="nav__local">
-            <ul>
-              <li className="nav-local-active" id="local-hero">
-                <a href="{`/`}">ポートフォリオサイト</a>
-              </li>
-              <li id="local-rabbit">
-                <a href="#summary-rabbit">ラビットテニススクール</a>
-              </li>
-              <li id="local-radio">
-                <a href="#summary-radio">ラジオ体操カード</a>
-              </li>
-              <li id="local-mahjong">
-                <a href="#summary-mahjong">麻雀計算機</a>
-              </li>
-              <li>
-                <a href="{`/`}">ポートフォリオサイト</a>
-              </li>
-              <li>
-                <a href="{`/`}">ポートフォリオサイト</a>
-              </li>
-              <li id="local-others">
-                <a href="#home__others-id">others</a>
-              </li>
-              <li id="local-blog">
-                <a href="#home__blog-id">blog</a>
-              </li>
-              <li id="local-about">
-                <a href="#home__about-id">about me</a>
-              </li>
-            </ul>
+            { local }
           </nav>
         </header>
         </div>
