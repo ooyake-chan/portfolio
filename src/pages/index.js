@@ -5,6 +5,7 @@ import  Img  from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import "../styles/index.scss"
 
 export const query = graphql`
   query {
@@ -18,9 +19,41 @@ export const query = graphql`
   }
 `
 
+const localMenu = (
+  <ul>
+  <li className="nav-local-active" id="local-hero">
+    <a href="/">ポートフォリオサイト</a>
+  </li>
+  <li id="local-rabbit">
+    <a href="#summary-rabbit">ラビットテニススクール</a>
+  </li>
+  <li id="local-radio">
+    <a href="#summary-radio">ラジオ体操カード</a>
+  </li>
+  <li id="local-mahjong">
+    <a href="#summary-mahjong">麻雀計算機</a>
+  </li>
+  <li>
+    <a href="{`/`}">ポートフォリオサイト</a>
+  </li>
+  <li>
+    <a href="{`/`}">ポートフォリオサイト</a>
+  </li>
+  <li id="local-others">
+    <a href="#home__others-id">others</a>
+  </li>
+  <li id="local-blog">
+    <a href="#home__blog-id">blog</a>
+  </li>
+  <li id="local-about">
+    <a href="#home__about-id">about me</a>
+  </li>
+</ul>
+)
+
 export default ({ data, location }) => {
   return (
-<Layout >
+<Layout local={ localMenu }>
 <SEO pagepath={location.pathname}/>
   <div className="home__heroimage">
     <h2 id="hero-head">portfolio</h2>
