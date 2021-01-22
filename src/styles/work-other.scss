@@ -1,6 +1,6 @@
 @import "../styles/settings";
 
-.work{
+.work, .other{
     margin:0  auto;
     padding-top: 25vh;
     h2{
@@ -72,7 +72,7 @@
     }
 
 }
-.blog{
+.blog-inner{
     margin-bottom: $margin-contents;
     h3 span{
         font-weight: 100;
