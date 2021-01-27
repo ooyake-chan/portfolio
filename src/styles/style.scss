@@ -18,6 +18,13 @@ body{
     font-family:  '游ゴシック', 'Arial', 'メイリオ', 'ヒラギノ角ゴ ProN', sans-serif;
     font-size: 16px;
 }
+hr{
+    display: block;
+    height: 1px;
+    margin: 1em 0;
+    border: 0;
+    border-top: 1px solid $text-color;
+}
 
 .floatleft{
     float: left;

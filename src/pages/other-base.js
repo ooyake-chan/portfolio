@@ -1,11 +1,55 @@
 import React from "react"
-// import { graphql } from "gatsby"
+import { graphql } from "gatsby"
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 
-// import  Img  from "gatsby-image"
+
+import  Img  from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "../styles/work-other.scss"
+
+export const query = graphql`
+query {
+    contentfulBlogPost(category: {elemMatch: {categorySlug: {eq: "others"}}}) {
+      title
+      title_sub
+      publishDateJP:publishDate(formatString: "YYYY年MM月")
+      publishDate
+      eyecatch {
+        fluid(maxWidth: 1200) {
+            base64
+            tracedSVG
+            srcWebp
+            srcSetWebp
+        }
+        description
+      }
+      information {
+        raw
+      }
+      content {
+        raw
+        references{
+            ... on ContentfulAsset {
+            contentful_id
+            __typename
+              file{
+                url
+              }
+            fixed(width: 1600) {
+              width
+              height
+              src
+              srcSet
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 const localMenu = (
     <ul>
@@ -18,77 +62,70 @@ const localMenu = (
   </ul>
 )
 
-export default ()=>{
+export default ({ data })=>{
     return (
         <Layout local={ localMenu }>
             <SEO />
             <div className="wrapper-contents">
                 <div className="other">
                     <h2>others</h2>
+                    <p>{data.contentfulBlogPost.title_sub || ""}</p>
+                    <h3 id="other-summary">{data.contentfulBlogPost.title}</h3>
+                    <time datatime={ data.contentfulBlogPost.publishData }>{ data.contentfulBlogPost.publishDateJP }</time>
+                    <figure>
+                        <Img 
+                        className="eyecatch" 
+                        fluid={ data.contentfulBlogPost.eyecatch.fluid } 
+                        alt={ data.contentfulBlogPost.eyecatch.description}
+                        style={{ height:"100%" }} 
+                        />
+                    </figure>
 
-                        <h3 id="other-summary">作品タイトル</h3>
-                        <time>2020.11</time>
-                        <img src="../images/heroImgClinic.png" alt="" />
-
-                        <div className="summary">
-                            <div className="summary__list">
-                                <section>
-                                    <h4>使用画材</h4>
-                                    <p>アクリルガッシュ</p>
-                                </section>
-                                <section>
-                                    <h4>サイズ</h4>
-                                    <p>332×242</p>
-                                </section>
-                            </div>
-                            <div className="summary__concept">
-                                <section>
-                                    <h4>コメント</h4>
-                                    <p>あああああああああああああああえいおうえおあう</p>
-                                </section>
-                            </div>
+                    <div className="summary">
+                        <div className="summary__list">
+                                { renderRichText(data.contentfulBlogPost.information, {}) }
                         </div>
+                    </div>
+              </div>
+              <hr />
+              <div className="blog-inner">
+                  <h3 id="other-blog">制作の様子<span>ブログに移動します</span></h3>
+                  <article className="flex">
+                      <div>
+                          <time>2020.11.20</time>
+                          <h1>ブログタイトル</h1>
+                          <div className="category">
+                              <p>web</p>
+                          </div>
+                          <img src="../images/heroImgClinic.png" alt="" />
+                          <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+                          <a href="{`/`}">続きを読む</a>
+                      </div>
 
+                      <div>
+                          <time>2020.11.20</time>
+                          <h1>ブログタイトル</h1>
+                          <div className="category">
+                              <p>web</p>
+                          </div>
+                          <img src="../images/heroImgClinic.png" alt="" />
+                          <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+                          <a href="{`/`}">続きを読む</a>
+                      </div>
 
-                </div>
-                        <div className="blog-inner">
-                            <h3 id="other-blog">制作の様子<span>ブログに移動します</span></h3>
-                            <article className="flex">
-                                <div>
-                                    <time>2020.11.20</time>
-                                    <h1>ブログタイトル</h1>
-                                    <div className="category">
-                                        <p>web</p>
-                                    </div>
-                                    <img src="../images/heroImgClinic.png" alt="" />
-                                    <p>aaaaaaaaaaaaaaaaaaaaaa</p>
-                                    <a href="{`/`}">続きを読む</a>
-                                </div>
-
-                                <div>
-                                    <time>2020.11.20</time>
-                                    <h1>ブログタイトル</h1>
-                                    <div className="category">
-                                        <p>web</p>
-                                    </div>
-                                    <img src="../images/heroImgClinic.png" alt="" />
-                                    <p>aaaaaaaaaaaaaaaaaaaaaa</p>
-                                    <a href="{`/`}">続きを読む</a>
-                                </div>
-
-                                <div>
-                                    <time>2020.11.20</time>
-                                    <h1>ブログタイトル</h1>
-                                    <div className="category">
-                                        <p>web</p>
-                                    </div>
-                                    <img src="../images/heroImgClinic.png" alt="" />
-                                    <p>aaaaaaaaaaaaaaaaaaaaaa</p>
-                                    <a href="{`/`}">続きを読む</a>
-                                </div>
-                            </article>
-                        </div>
-
+                      <div>
+                          <time>2020.11.20</time>
+                          <h1>ブログタイトル</h1>
+                          <div className="category">
+                              <p>web</p>
+                          </div>
+                          <img src="../images/heroImgClinic.png" alt="" />
+                          <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+                          <a href="{`/`}">続きを読む</a>
+                      </div>
+                  </article>
+              </div>
+              <hr />
                     <div className="post-link">
                         <a href={`/`}>prev</a>
                         <a href={`/`}>next</a>

@@ -12,37 +12,39 @@
         font-size: 1.25rem;
         margin:0.5rem 0;
     }
+    figure{
+        max-height: 100%;
+        height: 450px;
+        img{
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+    }
     >div{
         margin-bottom: 30px;
         padding-bottom:30px ;
-        border-bottom: 1px solid;
-    }
-    >img{
-        width: 90%;
-        display: block;
-        margin: 0 auto;
     }
     .summary{
         display: flex;
         justify-content: space-between;
-        &__list , &__concept{
-            width: 50%;
-        }
-        section{
-            display: flex;
-            margin-top: $margin-headings;
-        }
         h4{
-            margin-right: 0.5em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
         }
         ul{
-            display: flex;
+            margin-left: 2em;
+            li{
+                list-style-type: disc;
+                margin: 0.3em 0;
+            }
         }
     }
 
     .toolmap{
         h4{
-            margin-bottom: $margin-headings;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
         }
         svg{
             width: 100%;
@@ -58,7 +60,8 @@
             margin-bottom: 0;
         }
         h4{
-            margin-bottom: $margin-headings;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
         }
         h5{
             margin-bottom: $margin-texts;
