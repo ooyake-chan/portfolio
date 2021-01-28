@@ -1,4 +1,4 @@
-@import "../styles/settings";
+@import "./settings";
 
 .work, .other{
     margin:0  auto;
@@ -58,6 +58,13 @@
         }
         section:last-of-type{
             margin-bottom: 0;
+        }
+        h4{
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        h5{
+            margin-bottom: $margin-texts;
         }
         h4{
             margin-top: 1em;
