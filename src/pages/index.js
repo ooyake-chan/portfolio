@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 
 import  Img  from "gatsby-image"
+import Toolmap from "../utils/toolMap"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -142,7 +143,7 @@ export default ({ data, location }) => {
             { renderRichText( sum.node.information, {}) }
             </div>
             <div className="home__works-summary--toolmap">
-          <svg id="tool-slug" />
+            <Toolmap data={sum.node.childContentfulBlogPostWorkDataJsonNode} id={ sum.node.slug }/>
             </div>
           </div>
           <Link to={`/works/${sum.node.slug}/`} >詳細ページへ</Link>

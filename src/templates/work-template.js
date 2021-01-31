@@ -118,7 +118,7 @@ export default ({ data })=>{
                     <hr />
                     <div className="toolmap">
                         <h4 id="work-toolmap">ツールマップ</h4>
-                        <Toolmap data={data.contentfulBlogPostWorkDataJsonNode}/>
+                        <Toolmap data={data.contentfulBlogPostWorkDataJsonNode} id="work" />
                     </div>
                     <hr />
                     <div className="detail">
