@@ -68,7 +68,7 @@ const options = {
             if(movie){
                 return <video src={node.data.target.file.url} autoPlay muted loop />
             }else{
-                return <img src={node.data.target.file.url }/>
+                return <img src={node.data.target.file.url } alt=""/>
             }
         }
     }

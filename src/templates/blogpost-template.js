@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 
 import  Img  from "gatsby-image"

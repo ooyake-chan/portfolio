@@ -43,9 +43,7 @@ h2{
         h3{
             font-size: 20px;
         }
-        img{
-            width: 90%;
-            display: block;
+        figure{
             margin: 0 auto;
         }
     .wrap__works-summary{
@@ -68,7 +66,6 @@ h2{
         &--toolmap{
             width: 50%;
             height: 200px;
-            // background: $text-color;
         }
         button{
             display: block;
@@ -105,10 +102,11 @@ h2{
             margin-top:0.5em ;
             margin-bottom: 1.5em;
         }
-        img{
-            display: block;
-            width: 100%;
-            margin-bottom: 1.7em;
+        figure{
+            position: relative;
+            margin: 0 auto;
+            max-height: 100%;
+            height: 300px;
         }
     }
 }
@@ -132,11 +130,13 @@ h2{
             margin-top:0.5em ;
             margin-bottom: 0.5em;
         }
-        img{
-            display: block;
-            width: 100%;
-            margin-top: 1.5em;
-            margin-bottom: 1.7em;
+        figure{
+            max-height: 100%;
+            height: 300px;
+            width: 300px;
+            img{
+                object-fit: cover;
+            }
         }
     }
 }
