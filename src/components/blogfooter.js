@@ -3,10 +3,6 @@ import React from "react"
 export default ()=>{
     return(
         <div>
-            <div className="post-link">
-                <a href={`/`}>prev</a>
-                <a href={`/`}>next</a>
-            </div>
             <div className="blog-footer">
                 <div className="wrapper-contents flex">
                         <div>

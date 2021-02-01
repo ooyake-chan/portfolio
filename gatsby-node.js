@@ -52,6 +52,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 title
               }
             }
+            totalCount
           }
         }
   `)
@@ -93,5 +94,23 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         },
       })
     })
+
+   const blogPostsPerPage = 5
+   const blogPosts = blogresult.data.blog.totalCount
+   const blogPages = Math.ceil( blogPosts / blogPostsPerPage )
+
+   Array.from({ length: blogPages }).forEach(( _, i ) => {
+     createPage({
+       path: i === 0 ? `/blog/` : `/blog/${ i + 1 }/`,
+       component: path.resolve(`./src/templates/blog-template.js`),
+       context: {
+         skip: blogPostsPerPage * i,
+         limit: blogPostsPerPage,
+         currentPage: i + 1 ,
+         isFirst: i + 1 === 1,
+         isLast: i + 1 === blogPages,
+       },
+     })
+   })
 
 }

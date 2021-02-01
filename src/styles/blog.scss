@@ -10,8 +10,9 @@
     }
     article{
         padding: $margin-contents 0;
-        img{
+        figure{
             width: 340px;
+            height: 340px;
         }
         .body{
             margin-left: 30px;
@@ -20,6 +21,15 @@
             justify-content: space-between;
             h1{
                 margin: $margin-texts 0;
+                font-size: 1.5rem;
+            }
+            .desc{
+                h1,h2,h3,h4,h5{
+                    position: static;
+                    width: 100%;
+                    text-align: left;
+                    font-size: 16px;
+                }
             }
         }
     }
@@ -85,9 +95,10 @@
 }
 
 
-.post-link{
-    width: 70%;
+.pagenation{
     margin: $margin-contents auto;
+    display: flex;
+    justify-content: space-between;
 }
 .blog-footer{
     position: absolute;
