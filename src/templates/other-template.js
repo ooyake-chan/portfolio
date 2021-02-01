@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { BLOCKS} from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 
@@ -42,6 +42,20 @@ query($id: String!) {
               src
               srcSet
             }
+          }
+        }
+      }
+      postsLink {
+        title
+        slug
+        publishDateJP:publishDate(formatString: "YYYY年MM月DD日")
+        eyecatch {
+          fixed {
+            base64
+            tracedSVG
+            aspectRatio
+            srcWebp
+            srcSetWebp
           }
         }
       }
@@ -110,40 +124,25 @@ export default ({ data })=>{
               <hr />
               <div className="blog-inner">
                   <h3 id="other-blog">制作の様子<span>ブログに移動します</span></h3>
-                  <article className="flex">
-                      <div>
-                          <time>2020.11.20</time>
-                          <h1>ブログタイトル</h1>
-                          <div className="category">
-                              <p>web</p>
-                          </div>
-                          <img src="../images/heroImgClinic.png" alt="" />
-                          <p>aaaaaaaaaaaaaaaaaaaaaa</p>
-                          <a href="{`/`}">続きを読む</a>
-                      </div>
 
-                      <div>
-                          <time>2020.11.20</time>
-                          <h1>ブログタイトル</h1>
-                          <div className="category">
-                              <p>web</p>
-                          </div>
-                          <img src="../images/heroImgClinic.png" alt="" />
-                          <p>aaaaaaaaaaaaaaaaaaaaaa</p>
-                          <a href="{`/`}">続きを読む</a>
-                      </div>
-
-                      <div>
-                          <time>2020.11.20</time>
-                          <h1>ブログタイトル</h1>
-                          <div className="category">
-                              <p>web</p>
-                          </div>
-                          <img src="../images/heroImgClinic.png" alt="" />
-                          <p>aaaaaaaaaaaaaaaaaaaaaa</p>
-                          <a href="{`/`}">続きを読む</a>
-                      </div>
-                  </article>
+                  <div className="summary flex">
+                       { data.contentfulBlogPost.postsLink
+                      ?data.contentfulBlogPost.postsLink.map(link =>(
+                        <article>
+                            <time>{ link.publishDateJP }</time>
+                            <h1>{link.title}</h1>
+                            <figure>
+                              <Img 
+                              fixed={ link.eyecatch.fixed }
+                              style={{ width:"100%", height:"100%" }}
+                              />
+                            </figure>
+                            <Link to={`/blog/${link.slug}/`} >続きを読む</Link>
+                        </article>
+                      )) 
+                      :<div><p>関連ページはありません</p></div>
+                       }
+                  </div>
               </div>
               <hr />
                     <div className="post-link">
