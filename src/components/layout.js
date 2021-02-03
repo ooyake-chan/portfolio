@@ -6,7 +6,6 @@ import Footer from "../components/footer"
 
 
 export default ({local ,children})=>{
-    console.log(children)
     return (
         <div>
             <Header local={ local }/>
