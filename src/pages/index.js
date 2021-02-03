@@ -146,7 +146,10 @@ export default ({ data, location }) => {
             <Toolmap data={sum.node.childContentfulBlogPostWorkDataJsonNode} id={ sum.node.slug }/>
             </div>
           </div>
-          <Link to={`/works/${sum.node.slug}/`} >詳細ページへ</Link>
+          <div className="button">
+             <div className="button--plime" ><Link to={`/works/${sum.node.slug}/`} >詳細ページへ</Link></div>
+          </div>
+
         </div>
         ))
       }
@@ -192,11 +195,13 @@ export default ({ data, location }) => {
               style={{ height:"100%", width:"100%" }} 
               />
           </figure>
-          <Link to={`/blog/${blog.node.slug}/`} >詳細ページへ</Link>
+          <Link to={`/blog/${blog.node.slug}/`} >続きを読む</Link>
         </article>
       )) }
     </div>
-    <Link to={`/blog/`} >ブログトップページへ</Link>
+    <div className="button">
+        <div className="button--plime" ><Link to={`/blog/`} >ブログトップページへ</Link></div>
+    </div>
   </div>
   {/* blog */}
   {/* about */}

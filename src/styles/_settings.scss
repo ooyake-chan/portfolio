@@ -52,3 +52,40 @@ $margin-texts: 0.5rem;
         }
     }
 }
+
+@mixin primery-button{
+        height:2rem;
+        margin: 2rem auto;
+        text-align: center;
+        &--plime{
+            position: relative;
+            width:100%;
+            height:100%;
+            margin: 0 auto;
+            a{
+                display: block;
+                width:100%;
+                height:100%;
+                text-decoration: none;
+                position: absolute;
+                color: $text-color;
+                font-size: 1.25rem;
+                transition: 0.2s;
+            }
+            &:hover a{
+                transform: translateY(-3px);
+            }
+        }
+        &::after{
+            display: block;
+            width:8em;
+            height:1px;
+            margin: 0 auto;
+            content: '';
+            background: $text-color;
+            transition: 0.2s;
+        }
+        &:hover::after{
+            width: 15em;
+        }
+    }
