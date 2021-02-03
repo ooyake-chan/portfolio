@@ -89,3 +89,40 @@ $margin-texts: 0.5rem;
             width: 15em;
         }
     }
+
+    @mixin info-style{
+        h4{
+            margin-right: 0.5em;
+            float: left;
+        }
+        h4, h5, p{
+            &::before{
+                content: '';
+                display: block;
+                height: 0.5em;
+            }
+            
+        }
+        h5{
+            clear: both;
+            margin-left: 1em;
+        }
+        ul{
+            clear: both;
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 2em;
+            li{
+                margin: 0.3em 0;
+                margin-left: 1em;
+                display: inline-block;
+                p{
+                    display: inline-block;
+                }
+                &::before{
+                    content: "●";
+                    display: inline-block;
+                }
+            }
+        }
+    }
