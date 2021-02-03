@@ -61,7 +61,7 @@ export default({data, pageContext})=>{
                                 <div className="body">
                                     <div>
                                         <time>{ blogsum.node.publishDate }</time>
-                                        <h1>{ blogsum.node.title }</h1>
+                                        <h3>{ blogsum.node.title }</h3>
                                         <hr/>
                                         <div className="desc">
                                             { renderRichText( blogsum.node.content,{} ) }

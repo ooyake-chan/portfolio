@@ -1,4 +1,5 @@
 @import "./settings";
+
 // body
 h2{
     font-size: 10em;
@@ -13,9 +14,9 @@ h2{
 #hero-head{
     top: 35vh;
 }
-#trigger-first, #trigger-second, #trigger-third, #trigger-fourth{
-    height: 50vh;
-}
+// #trigger-first, #trigger-second, #trigger-third, #trigger-fourth{
+//     height: 50vh;
+// }
 
 // hero
 .home__heroimage{
@@ -32,6 +33,7 @@ h2{
 
 // works
 .home__works{
+    @include a-style;
     width: 70%;
     margin:0 auto;
     margin-top: 10em;
@@ -41,7 +43,8 @@ h2{
         border: 1px solid $text-color;
         background: $main-color;
         h3{
-            font-size: 20px;
+            font-size: 2rem;
+            margin:$margin-headings 0;
         }
         figure{
             margin: 0 auto;
@@ -49,7 +52,6 @@ h2{
     .wrap__works-summary{
         display: flex;
     }
-    
         &--info{
             width: 50%;
             section{
@@ -66,7 +68,7 @@ h2{
         &--toolmap{
             width: 50%;
             height: 200px;
-        }
+            }
         button{
             display: block;
             margin: 0 auto;
@@ -77,28 +79,25 @@ h2{
     :last-of-type{
         margin-bottom: 0;
     }
-    svg{
-        height: 100%;
-        width: 100%;
-    }
 }
 
 // others
 .home__others{
+    @include a-style;
     width: 70%;
     margin: 0 auto;
-    margin-top: 10em;
+    // margin-top: 10em;
     .wrap__others{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        // justify-content: space-between;
     }
     &--summary{
         width: 33%;
         padding: 1em;
         background: $main-color;
         h3{
-            font-size: 1.25em;
+            font-size: 1.25rem;
             margin-top:0.5em ;
             margin-bottom: 1.5em;
         }
@@ -113,13 +112,14 @@ h2{
 
 //blog
 .home__blog{
+    @include a-style;
     width: 70%;
     margin: 0 auto;
     margin-top: 10em;
     .wrap__blog{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        // justify-content: space-between;
     }
     &--post{
         width: 33%;

@@ -125,7 +125,7 @@ export default ({ data })=>{
                             />
                         </figure>
                     <div className="summary">
-                        <div className="summary__list">
+                        <div className="summary--info">
                             { renderRichText(data.contentfulBlogPost.information, {}) }
                         </div>
                     </div>
@@ -141,13 +141,13 @@ export default ({ data })=>{
                 </div>
                 <hr />
                 <div className="blog-inner">
-                    <h3 id="work-blog">制作の様子<span>ブログに移動します</span></h3>
+                    <h4 id="work-blog">制作の様子<span>ブログに移動します</span></h4>
                     <div className="summary flex">
                       { data.contentfulBlogPost.postsLink
                       ?data.contentfulBlogPost.postsLink.map(link =>(
                         <article>
                             <time>{ link.publishDateJP }</time>
-                            <h1>{link.title}</h1>
+                            <h5>{link.title}</h5>
                             <figure>
                               <Img 
                               fixed={ link.eyecatch.fixed }
