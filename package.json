@@ -17,6 +17,7 @@
     "@contentful/rich-text-plain-text-renderer": "^14.1.2",
     "@contentful/rich-text-react-renderer": "^14.1.2",
     "@contentful/rich-text-types": "^14.1.2",
+    "d3": "^6.5.0",
     "gatsby": "^2.26.1",
     "gatsby-image": "^2.9.0",
     "gatsby-plugin-react-helmet": "^3.8.0",
