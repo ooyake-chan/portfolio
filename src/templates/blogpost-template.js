@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { BLOCKS } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 
@@ -44,6 +44,20 @@ query($id: String!) {
           }
         }
       }
+      postsLink {
+        title
+        slug
+        publishDateJP:publishDate(formatString: "YYYY年MM月DD日")
+        eyecatch {
+          fixed {
+            base64
+            tracedSVG
+            aspectRatio
+            srcWebp
+            srcSetWebp
+          }
+        }
+      }
     }
   }
   `
@@ -79,7 +93,7 @@ export default({ data })=>{
                     <article className="wrapper-blogpost">
                         <div className="head">
                         <time datatime={ data.contentfulBlogPost.publishData }>{ data.contentfulBlogPost.publishDateJP }</time>
-                            <h1>{data.contentfulBlogPost.title}</h1>
+                            <h3>{data.contentfulBlogPost.title}</h3>
                             <div className="category flex">
                                 <p>web</p>
                                 <p>アプリ開発</p>
@@ -94,6 +108,32 @@ export default({ data })=>{
                         </div>
                     </article>
                     <hr />
+                    <div>
+                      <h4>関連ページ</h4>
+                      <div className="summary flex">
+                        { data.contentfulBlogPost.postsLink
+                        ?data.contentfulBlogPost.postsLink.map(link =>(
+                          <article>
+                              <time>{ link.publishDateJP }</time>
+                              <h5>{link.title}</h5>
+                              <figure>
+                                <Img 
+                                fixed={ link.eyecatch.fixed }
+                                style={{ width:"100%", height:"100%" }}
+                                />
+                              </figure>
+                              <Link to={`/blog/${link.slug}/`} >続きを読む</Link>
+                          </article>
+                        )) 
+                        :<div><p>関連ページはありません</p></div>
+                        }
+                      </div>
+                    </div>
+                    <hr/>
+                    <div className="post-link">
+                    <a href={`/`}>prev</a>
+                    <a href={`/`}>next</a>
+                </div>
                 </div>
             </div>
             <Blogfooter />
