@@ -129,17 +129,14 @@ export default ({ data })=>{
                             { renderRichText(data.contentfulBlogPost.information, {}) }
                         </div>
                     </div>
-                    <hr />
                     <div className="toolmap">
                         <h4 id="work-toolmap">ツールマップ</h4>
                         <Toolmap data={data.contentfulBlogPostWorkDataJsonNode} id="work" />
                     </div>
-                    <hr />
                     <div className="detail">
                         { renderRichText(data.contentfulBlogPost.content, options) }
                     </div>
                 </div>
-                <hr />
                 <div className="blog-inner">
                     <h4 id="work-blog">制作の様子<span>ブログに移動します</span></h4>
                     <div className="summary flex">
