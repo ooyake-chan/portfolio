@@ -24,7 +24,7 @@ export default ()=>{
                                 <ul>
                                     { data.allContentfulCategory.edges.map((cat) => (
                                             (cat.node.categorySlug === "works" || cat.node.categorySlug === "others") ||
-                                        <li>
+                                        <li key={cat.node.categorySlug}>
                                             <Link to={`/cat/${ cat.node.categorySlug }/`} >{ cat.node.category }/</Link>
                                         </li>
                                     )) }

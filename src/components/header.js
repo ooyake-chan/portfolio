@@ -64,7 +64,7 @@ query {
           </nav>
           <nav className="nav__local"> 
             { local }
-            <label for="nav__gloval--checkbox">
+            <label htmlFor="nav__gloval--checkbox">
               <span className="mobile-menu__button">menu open</span>
             </label>
           </nav>

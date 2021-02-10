@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import ScrollMagic from "ScrollMagic"
@@ -15,7 +15,7 @@ export const query = graphql`
   query {
     file(relativePath: {eq: "aboutme.jpg"}) {
       childImageSharp {
-        fluid{
+        fluid(maxWidth: 1000){
           ...GatsbyImageSharpFluid
         }
       }
@@ -32,12 +32,8 @@ export const query = graphql`
             raw
           }
           eyecatch {
-            fluid {
-              base64
-              tracedSVG
-              aspectRatio
-              srcWebp
-              srcSetWebp
+            fluid(maxWidth: 1000) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
           childContentfulBlogPostWorkDataJsonNode {
@@ -61,11 +57,8 @@ export const query = graphql`
           publishDate(formatString: "YYYY年MM月")
           slug
           eyecatch {
-            fluid{
-              base64
-              tracedSVG
-              srcWebp
-              srcSetWebp
+            fluid(maxWidth: 1000){
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
@@ -79,12 +72,8 @@ export const query = graphql`
           publishDate(formatString: "YYYY年MM月DD日")
           slug
           eyecatch {
-            fixed(width: 300) {
-              base64
-              tracedSVG
-              aspectRatio
-              srcWebp
-              srcSetWebp
+            fluid(maxWidth: 1000){
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
@@ -104,13 +93,13 @@ export default ({ data, location }) => {
       <button onClick={()=> scrollTo(`#summary-${local.node.slug}`)}>{local.node.title}</button>
     </li>
     ))}
-    <li id="local-others">
+    <li id="local-others" key="local-others">
       <button onClick={()=> scrollTo("#home__others-id")}>others</button>
     </li>
-    <li id="local-blog">
+    <li id="local-blog" key="local-blog">
       <button onClick={()=> scrollTo("#home__blog-id")}>blog</button>
     </li>
-    <li id="local-about">
+    <li id="local-about" key="local-about">
       <button onClick={()=> scrollTo("#home__about-id")}>about</button>
     </li>
   </ul>
@@ -122,23 +111,27 @@ export default ({ data, location }) => {
     
     const length = data.works.edges.length
     console.log(navId, length)
-    
-    navId.forEach(element => {
-      const slug = element.node.slug
-    
-      new ScrollMagic.Scene({triggerElement: `#summary-${slug}`, duration:"100%"})
-      .setClassToggle(`#local-${slug}`, "nav-local-active")
+
+
+    useEffect(()=>{
+      navId.forEach(element => {
+          const slug = element.node.slug
+        
+          new ScrollMagic.Scene({triggerElement: `#summary-${slug}`, duration:"100%"})
+          .setClassToggle(`#local-${slug}`, "nav-local-active")
+          .addTo(controller);
+      })
+      new ScrollMagic.Scene({triggerElement: "#home__others-id", duration:"100%"})
+      .setClassToggle("#local-others", "nav-local-active")
       .addTo(controller);
-    });
-    new ScrollMagic.Scene({triggerElement: "#home__others-id", duration:"100%"})
-    .setClassToggle("#local-others", "nav-local-active")
-    .addTo(controller);
-    new ScrollMagic.Scene({triggerElement: "#home__blog-id", duration:"100%"})
-    .setClassToggle("#local-blog", "nav-local-active")
-    .addTo(controller);
-    new ScrollMagic.Scene({triggerElement: "#home__about-id", duration:"100%"})
-    .setClassToggle("#local-about", "nav-local-active")
-    .addTo(controller);
+      new ScrollMagic.Scene({triggerElement: "#home__blog-id", duration:"100%"})
+      .setClassToggle("#local-blog", "nav-local-active")
+      .addTo(controller);
+      new ScrollMagic.Scene({triggerElement: "#home__about-id", duration:"100%"})
+      .setClassToggle("#local-about", "nav-local-active")
+      .addTo(controller);
+    })
+
 
   return (
 <Layout local={ localMenu(data.works) }>
@@ -215,13 +208,13 @@ export default ({ data, location }) => {
     <div className="wrap__blog">
 
       { data.blog.edges.map((blog)=>(
-        <article className="home__blog--post">
+        <article className="home__blog--post" key={blog.node.id}>
           <time>{ blog.node.publishDate }</time>
           <h3>{ blog.node.title }</h3>
           <Link to={`/blog/${blog.node.slug}/`} >
             <figure>
                 <Img 
-                fixed={ blog.node.eyecatch.fixed } 
+                fluid={ blog.node.eyecatch.fluid } 
                 alt={ blog.node.eyecatch.description}
                 style={{ height:"100%", width:"100%" }} 
                 />
@@ -244,9 +237,9 @@ export default ({ data, location }) => {
       <h3>村松美紀</h3>
       <p>1992.11.5</p>
       <div className="about-img">
-        <figre data-sal="slide-up">
+        <figure data-sal="slide-up">
           <Img fluid={ data.file.childImageSharp.fluid } />
-        </figre>
+        </figure>
         </div>
       <div className="wrap__about">
         <div className="home__about--info">

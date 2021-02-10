@@ -22,12 +22,8 @@ query($skip: Int!, $limit: Int!) {
           publishDate(formatString: "YYYY年MM月DD日")
           slug
           eyecatch {
-            fluid {
-              base64
-              tracedSVG
-              aspectRatio
-              srcWebp
-              srcSetWebp
+            fluid(maxWidth: 1000){
+                ...GatsbyContentfulFluid_withWebp
             }
             description
           }

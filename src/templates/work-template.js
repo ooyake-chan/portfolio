@@ -20,11 +20,8 @@ query($id: String!) {
       publishDate
       eyecatch {
         description
-        fluid(maxWidth: 1200) {
-            base64
-            tracedSVG
-            srcWebp
-            srcSetWebp
+        fluid(maxWidth: 1000) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       information {
@@ -56,9 +53,10 @@ query($id: String!) {
         slug
         publishDateJP:publishDate(formatString: "YYYY年MM月DD日")
         eyecatch {
-          fixed {
+          fixed( width:340 ) {
             base64
-            tracedSVG
+            src
+            srcSet
             aspectRatio
             srcWebp
             srcSetWebp
@@ -151,7 +149,7 @@ export default ({ data, pageContext })=>{
                     <div className="summary flex">
                       { data.contentfulBlogPost.postsLink
                       ?data.contentfulBlogPost.postsLink.map(link =>(
-                        <article>
+                        <article key={`worklink${link.slug}`}>
                             <time>{ link.publishDateJP }</time>
                             <h5>{link.title}</h5>
                             <figure>
