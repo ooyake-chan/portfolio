@@ -147,17 +147,19 @@ export default ({ data, location }) => {
     <h2 id="hero-head">portfolio</h2>
     <div id="particle-canvas" />
   </div>
-  {/* works */}
-  <h2 id="works-head">works</h2>
+  {/* worksここから */}
+  <h2 id="works-head" data-sal="slide-left" data-sal-duration="500">works</h2>
   <div className="home__works" id="home__works-id">
-    <div id="trigger-first" style={{height: '50vh'}} />
-      {
-        data.works.edges.map(sum=>(
-        <div className="home__works-summary" id={`summary-${sum.node.slug}`} key={sum.node.id}>
+
+      {data.works.edges.map(sum=>(
+        <div 
+        className="home__works-summary" 
+        id={`summary-${sum.node.slug}`} 
+        key={sum.node.id}>
           <p>{sum.node.title_sub || ""}</p>
-          <h3>{sum.node.title}</h3>
+          <h3 data-sal="slide-up">{sum.node.title}</h3>
           <time>{sum.node.publishDate}</time>
-          <figure>
+          <figure data-sal="slide-up">
               <Img 
               className="eyecatch" 
               fluid={ sum.node.eyecatch.fluid } 
@@ -179,12 +181,12 @@ export default ({ data, location }) => {
         </div>
         ))
       }
+
   </div>
-  {/* works */}
-  {/* others */}
-  <h2 id="others-head">others</h2>
+  {/* worksここまで */}
+  {/* othersここから */}
+  <h2 id="others-head" data-sal="slide-left" data-sal-duration="500">others</h2>
   <div className="home__others" id="home__others-id">
-    <div id="trigger-second"></div>
     <div className="wrap__others">
 
       { data.others.edges.map(sum =>(
@@ -206,12 +208,12 @@ export default ({ data, location }) => {
 
     </div>
   </div>
-  {/* others */}
-  {/* blog */}
-  <h2 id="blog-head">blog</h2>
+  {/* othersここまで */}
+  {/* blogここから */}
+  <h2 id="blog-head" data-sal="slide-left" data-sal-duration="500">blog</h2>
   <div className="home__blog" id="home__blog-id">
-    <div id="trigger-third" />
     <div className="wrap__blog">
+
       { data.blog.edges.map((blog)=>(
         <article className="home__blog--post">
           <time>{ blog.node.publishDate }</time>
@@ -234,16 +236,17 @@ export default ({ data, location }) => {
         <div className="button--plime" ><Link to={`/blog/`} >ブログトップページへ</Link></div>
     </div>
   </div>
-  {/* blog */}
-  {/* about */}
-  <h2 id="about-head" className="home__about--headbg">about me</h2>
-  <div id="trigger-fourth" />
+  {/* blogここまで */}
+  {/* aboutここから */}
+  <h2 id="about-head" className="home__about--headbg" data-sal="slide-left" data-sal-duration="500">about me</h2>
   <div className="home__about--bg">
     <div className="home__about" id="home__about-id">
       <h3>村松美紀</h3>
       <p>1992.11.5</p>
       <div className="about-img">
+        <figre data-sal="slide-up">
           <Img fluid={ data.file.childImageSharp.fluid } />
+        </figre>
         </div>
       <div className="wrap__about">
         <div className="home__about--info">
