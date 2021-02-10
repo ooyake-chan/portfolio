@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { BLOCKS } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 import  Img  from "gatsby-image"
 import Toolmap from "../utils/toolMap"
@@ -91,17 +92,17 @@ const options = {
 export default ({ data })=>{
     const localMenu = (
         <ul>
-        <li className="nav-local-active" id="local-summary">
-          <a href="#work-summary">作品概要</a>
+        <li  id="local-summary">
+          <button onClick={()=> scrollTo("#work-summary")}>作品概要</button>
         </li>
         <li id="local-toolmap">
-          <a href="#work-toolmap">ツールマップ</a>
+          <button onClick={()=> scrollTo("#work-toolmap")}>ツールマップ</button>
         </li>
         <li id="local-detail">
-          <a href="#work-detail">制作の目標・反省</a>
+          <button onClick={()=> scrollTo("#work-detail")}>制作の目標・反省</button>
         </li>
         <li id="local-blog">
-          <a href="#work-blog">制作の様子</a>
+          <button onClick={()=> scrollTo("#work-blog")}>制作の様子</button>
         </li>
       </ul>
     )
