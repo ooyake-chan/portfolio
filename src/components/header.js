@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
+import ScrollMagic from "ScrollMagic"
 
 export default ({ local })=>{
 const data = useStaticQuery(graphql`
@@ -24,6 +25,7 @@ query {
   }
 }
 `)
+
     return (
         <div>
         <meta charSet="UTF-8" />
@@ -31,6 +33,7 @@ query {
         <title>Document</title>
         <header>
           <h1><Link to="/">miki's portfolio</Link></h1>
+            <input type="checkbox" id="nav__gloval--checkbox"  />
           <nav className="nav__gloval">
             <ul className="nav__gloval--primary-list">
               <li>
@@ -59,8 +62,11 @@ query {
               <li><a href="/blog/">ブログ /</a></li>
             </ul>
           </nav>
-          <nav className="nav__local">
+          <nav className="nav__local"> 
             { local }
+            <label for="nav__gloval--checkbox">
+              <span className="mobile-menu__button">menu open</span>
+            </label>
           </nav>
         </header>
         </div>

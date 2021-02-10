@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { BLOCKS } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 import  Img  from "gatsby-image"
 import Toolmap from "../utils/toolMap"
@@ -27,6 +28,9 @@ query($id: String!) {
         }
       }
       information {
+        raw
+      }
+      concept{
         raw
       }
       content {
@@ -61,8 +65,7 @@ query($id: String!) {
           }
         }
       }
-    }
-    contentfulBlogPostWorkDataJsonNode {
+      workData {
         links {
           source
           target
@@ -72,6 +75,7 @@ query($id: String!) {
           label
         }
       }
+  }
   }
 `
 
@@ -88,20 +92,20 @@ const options = {
     }
 }
 
-export default ({ data })=>{
+export default ({ data, pageContext })=>{
     const localMenu = (
         <ul>
-        <li className="nav-local-active" id="local-summary">
-          <a href="#work-summary">作品概要</a>
+        <li  id="local-summary">
+          <button onClick={()=> scrollTo("#work-summary")}>作品概要</button>
         </li>
         <li id="local-toolmap">
-          <a href="#work-toolmap">ツールマップ</a>
+          <button onClick={()=> scrollTo("#work-toolmap")}>ツールマップ</button>
         </li>
         <li id="local-detail">
-          <a href="#work-detail">制作の目標・反省</a>
+          <button onClick={()=> scrollTo("#work-detail")}>制作の目標・反省</button>
         </li>
         <li id="local-blog">
-          <a href="#work-blog">制作の様子</a>
+          <button onClick={()=> scrollTo("#work-blog")}>制作の様子</button>
         </li>
       </ul>
     )
@@ -125,15 +129,20 @@ export default ({ data })=>{
                             />
                         </figure>
                     <div className="summary">
+                      <div className="flex">
                         <div className="summary--info">
                             { renderRichText(data.contentfulBlogPost.information, {}) }
                         </div>
+                        <div className="summary--concept">
+                            { renderRichText(data.contentfulBlogPost.concept, {}) }
+                    </div>
+                      </div>
                     </div>
                     <div className="toolmap">
                         <h4 id="work-toolmap">ツールマップ</h4>
-                        <Toolmap data={data.contentfulBlogPostWorkDataJsonNode} id="work" />
+                        <Toolmap data={data.contentfulBlogPost.workData} id="work" />
                     </div>
-                    <div className="detail">
+                    <div className="detail" id="work-detail">
                         { renderRichText(data.contentfulBlogPost.content, options) }
                     </div>
                 </div>
@@ -160,10 +169,22 @@ export default ({ data })=>{
                     <hr />
                 </div>
 
-                <div className="post-link">
-                    <a href={`/`}>prev</a>
-                    <a href={`/`}>next</a>
-                </div>
+                <ul className="post-link">
+                  <li className="prev">
+                      { pageContext.previous && (
+                        <Link to={`/works/${pageContext.previous.slug}/`} >
+                          <span>{ pageContext.previous.title }</span>
+                        </Link>
+                      ) }
+                  </li>
+                  <li className="next">
+                      { pageContext.next && (
+                        <Link to={`/works/${pageContext.next.slug}/`} >
+                          <span>{ pageContext.next.title }</span>
+                        </Link>
+                      ) }
+                  </li>
+                </ul>
             </div>
         </Layout>
     )

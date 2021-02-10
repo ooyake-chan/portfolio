@@ -7,6 +7,25 @@ $margin-contents: 60px;
 $margin-headings: 1.25rem;
 $margin-texts: 0.5rem;
 
+@mixin toolmap-style{
+    font-size: 1rem;
+    line{
+        stroke: $text-color;
+    }
+    circle{
+        stroke: $text-color;
+        fill:$main-color;
+    }
+    .center{
+        fill: $text-color;
+    }
+    text{
+        fill: $text-color;
+        user-select: none;
+    }
+    
+}
+
 @mixin heading-style{
     h1,h2,h3,h4,h5,h6{
         position: static;
@@ -45,10 +64,12 @@ $margin-texts: 0.5rem;
 
 @mixin a-style{
     a{
-        text-decoration: underline;
         color: $link-color;
         &:visited{
             color: $visited-color;
+        }
+        &:hover{
+            text-decoration: underline;
         }
     }
 }
@@ -91,6 +112,11 @@ $margin-texts: 0.5rem;
     }
 
     @mixin info-style{
+        h1,h2,h3,h4,h5,h6{
+            position: static;
+            width: auto;
+            text-align: left;
+        }
         h4{
             margin-right: 0.5em;
             float: left;

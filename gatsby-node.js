@@ -54,6 +54,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
             totalCount
           }
+          cat:allContentfulCategory {
+            edges {
+              node {
+                categorySlug
+                category
+                id
+                blogpost {
+                  title
+                }
+              }
+            }
+          }
         }
   `)
 
@@ -63,34 +75,40 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   blogresult.data.works.edges.forEach(
-    ({ node }) => {
+    ({ node, next, previous }) => {
       createPage({
         path: `/works/${node.slug}/`,
         component: path.resolve(`./src/templates/work-template.js`),
         context: {
             id: node.id,
+            next,
+            previous,
         },
       })
     })
 
   blogresult.data.others.edges.forEach(
-    ({ node }) => {
+    ({ node, next, previous }) => {
       createPage({
         path: `/others/${node.slug}/`,
         component: path.resolve(`./src/templates/other-template.js`),
         context: {
             id: node.id,
+            next,
+            previous,
         },
       })
     })
 
   blogresult.data.blog.edges.forEach(
-    ({ node }) => {
+    ({ node, next, previous }) => {
       createPage({
         path: `/blog/${node.slug}/`,
-        component: path.resolve(`./src/templates/blogpost-template.js`),
+        component: path.resolve(`./src/templates/post-template.js`),
         context: {
             id: node.id,
+            next,
+            previous,
         },
       })
     })
@@ -110,6 +128,32 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
          isFirst: i + 1 === 1,
          isLast: i + 1 === blogPages,
        },
+     })
+   })
+
+   blogresult.data.cat.edges.forEach(({ node })=>{
+     const catPostsPerPage = 5
+     const catPosts = node.blogpost.length
+     const catPages = Math.ceil( catPosts / catPostsPerPage )
+
+     Array.from({ length: catPages }).forEach(( _, i ) => {
+       createPage({
+         path:
+          i === 0
+            ? `/cat/${ node.categorySlug }/`
+            : `/cat/${ node.categorySlug }/${ i + 1 }/`,
+          component: path.resolve(`./src/templates/cat-template.js`),
+          context: {
+            catid: node.id,
+            catname: node.category,
+            catslug: node.categorySlug,
+            skip: catPostsPerPage * i,
+            limit: catPostsPerPage,
+            currentPage: i + 1,
+            isFirst: i + 1 === 1,
+            isLast: i + 1 === catPages,
+          },
+       })
      })
    })
 

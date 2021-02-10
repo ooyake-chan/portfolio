@@ -35,5 +35,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
+    `gatsby-plugin-smoothscroll`,
+    `gatsby-plugin-scroll-reveal`,
   ],
 }

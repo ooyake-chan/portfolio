@@ -1,22 +1,18 @@
 @import "./settings";
-
 // body
 h2{
     font-size: 10em;
+    text-align: right;
+}
+#hero-head{
+    font-size: 10em;
     position: absolute;
+    top: 35vh;
     right: 60px;
     z-index: -1;
     width: 50vw;
     text-align: right;
 }
-
-// scroll
-#hero-head{
-    top: 35vh;
-}
-// #trigger-first, #trigger-second, #trigger-third, #trigger-fourth{
-//     height: 50vh;
-// }
 
 // hero
 .home__heroimage{
@@ -34,9 +30,11 @@ h2{
 // works
 .home__works{
     @include a-style;
+    @include toolmap-style;
     width: 70%;
     margin:0 auto;
-    margin-top: 10em;
+    margin-top: 5em;
+    margin-bottom: 10em;
     .button{
         @include primery-button;
     }
@@ -45,9 +43,12 @@ h2{
         padding: 30px;
         border: 1px solid $text-color;
         background: $main-color;
+        time{
+            display: inline-block;
+        }
         h3{
             font-size: 2rem;
-            margin:$margin-headings 0;
+            margin:$margin-texts 0;
         }
         figure{
             margin: $margin-headings auto;
@@ -59,40 +60,6 @@ h2{
         &--info{
             width: 50%;
             @include info-style
-            // h4{
-            //     margin-right: 0.5em;
-            //     float: left;
-            // }
-            // h4, h5, p{
-            //     &::before{
-            //         content: '';
-            //         display: block;
-            //         height: 0.5em;
-            //     }
-                
-            // }
-            // h5{
-            //     clear: both;
-            //     margin-left: 1em;
-            // }
-            // ul{
-            //     clear: both;
-            //     display: flex;
-            //     flex-wrap: wrap;
-            //     margin-left: 2em;
-            //     li{
-            //         margin: 0.3em 0;
-            //         margin-left: 1em;
-            //         display: inline-block;
-            //         p{
-            //             display: inline-block;
-            //         }
-            //         &::before{
-            //             content: "●";
-            //             display: inline-block;
-            //         }
-            //     }
-            // }
         }
         &--toolmap{
             width: 50%;
@@ -103,21 +70,18 @@ h2{
             }
         }
     }
-    :last-of-type{
-        margin-bottom: 0;
-    }
 }
 
 // others
 .home__others{
     @include a-style;
     width: 70%;
-    margin: 0 auto;
-    // margin-top: 10em;
+    margin:0 auto;
+    margin-top: 5em;
+    margin-bottom: 10em;
     .wrap__others{
         display: flex;
         flex-wrap: wrap;
-        // justify-content: space-between;
     }
     &--summary{
         width: 33%;
@@ -125,8 +89,7 @@ h2{
         background: $main-color;
         h3{
             font-size: 1.25rem;
-            margin-top:0.5em ;
-            margin-bottom: 1.5em;
+            margin: $margin-texts 0;
         }
         figure{
             position: relative;
@@ -141,15 +104,15 @@ h2{
 .home__blog{
     @include a-style;
     width: 70%;
-    margin: 0 auto;
-    // margin-top: 10em;
+    margin:0 auto;
+    margin-top: 5em;
+    margin-bottom: 10em;
     .button{
         @include primery-button;
     }
     .wrap__blog{
         display: flex;
         flex-wrap: wrap;
-        // justify-content: space-between;
     }
     &--post{
         width: 33%;
@@ -157,17 +120,13 @@ h2{
         background: $main-color;
         h3{
             font-size: 1.25em;
-            margin-top:0.5em ;
-            margin-bottom: 0.5em;
+            margin: $margin-texts 0;
         }
         figure{
+            position: relative;
             max-height: 100%;
             height: 300px;
-            width: 300px;
             margin: 1rem 0;
-            img{
-                object-fit: cover;
-            }
         }
     }
 }
@@ -179,7 +138,6 @@ h2{
     left: 0;
     width: 100vw;
     margin: 0 auto;
-    margin-top: 10em;
     background: darken($main-color, 15%);
 }
 .home__about{
@@ -211,5 +169,37 @@ h2{
         width: 50%;
         height: 100px;
         background: $text-color;
+    }
+}
+
+@media(max-width: 700px){
+    h2, #hero-head{
+        font-size: 3.75rem;
+        right: 40px;
+    }
+    .home__works{
+        width: 90%;
+        margin-left: 40px;
+        &-summary{
+            border: none;
+            padding: 10px;
+            h3{
+                font-size: 1rem;
+            }
+            &--info{
+                width: 100%;
+                @include info-style
+            }
+            &--toolmap{
+                display: none;
+            }
+        }
+    }
+    .home__others, .home__blog{
+        width: 90%;
+        margin-left: 40px;
+        &--summary, &--post{
+            width: 100%;
+        }
     }
 }

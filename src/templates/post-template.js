@@ -69,13 +69,13 @@ query($id: String!) {
     }
 }
 
-export default({ data })=>{
+export default({ data, pageContext })=>{
     return (
         <Layout>
             <SEO />
             <div className="blog-post">
                 <div className="eyecatch">
-                <figure>
+                  <figure>
                       {
                       data.contentfulBlogPost.eyecatch.fluid
                       ?<Img 
@@ -94,10 +94,6 @@ export default({ data })=>{
                         <div className="head">
                         <time datatime={ data.contentfulBlogPost.publishData }>{ data.contentfulBlogPost.publishDateJP }</time>
                             <h3>{data.contentfulBlogPost.title}</h3>
-                            <div className="category flex">
-                                <p>web</p>
-                                <p>アプリ開発</p>
-                            </div>
                         </div>
                         <div className="body">
                         { 
@@ -107,10 +103,9 @@ export default({ data })=>{
                         }
                         </div>
                     </article>
-                    <hr />
                     <div>
-                      <h4>関連ページ</h4>
-                      <div className="summary flex">
+                      <h4>関連記事</h4>
+                      <div className="relation flex">
                         { data.contentfulBlogPost.postsLink
                         ?data.contentfulBlogPost.postsLink.map(link =>(
                           <article>
@@ -125,16 +120,28 @@ export default({ data })=>{
                               <Link to={`/blog/${link.slug}/`} >続きを読む</Link>
                           </article>
                         )) 
-                        :<div><p>関連ページはありません</p></div>
+                        :<div><p>関連記事はありません</p></div>
                         }
                       </div>
                     </div>
                     <hr/>
-                    <div className="post-link">
-                    <a href={`/`}>prev</a>
-                    <a href={`/`}>next</a>
-                </div>
-                </div>
+                <ul className="post-link">
+                  <li className="prev">
+                    { pageContext.previous && (
+                      <Link to={`/blog/${pageContext.previous.slug}/`} >
+                        <span>{ pageContext.previous.title }</span>
+                      </Link>
+                    ) }
+                  </li>
+                  <li className="next">
+                    { pageContext.next && (
+                      <Link to={`/blog/${pageContext.next.slug}/`} >
+                        <span>{ pageContext.next.title }</span>
+                      </Link>
+                    ) }
+                  </li>
+                </ul>
+              </div>
             </div>
             <Blogfooter />
         </Layout>

@@ -1,5 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { BLOCKS } from "@contentful/rich-text-types"
 
 import  Img  from "gatsby-image"
 
@@ -9,12 +11,12 @@ import Blogfooter from "../components/blogfooter"
 import "../styles/blog.scss"
 
 export const query = graphql`
-query($skip: Int!, $limit: Int!) {
+query($catid: String!, $skip: Int!, $limit: Int!) {
     blog:allContentfulBlogPost(
         sort: {order: DESC, fields: publishDate}, 
         skip: $skip, 
         limit: $limit,
-        filter: {category: {elemMatch: {categorySlug: {eq: "blog"}}}}) {
+        filter: {category: {elemMatch: {id: {eq: $catid }}}}) {
       edges {
         node {
           id
@@ -40,6 +42,19 @@ query($skip: Int!, $limit: Int!) {
     }
   }
 `
+const options = {
+    renderNode: {
+        [ BLOCKS.HEADING_4]: (node, children) => (
+        <p>{ children }</p>
+            ),
+        [ BLOCKS.HEADING_5]: (node, children) => (
+        <p>{ children }</p>
+        ),
+        [ BLOCKS.HEADING_6]: (node, children) => ( 
+        <p>{ children }</p>
+        ),
+    }
+}
 
 export default({data, pageContext})=>{
     return (
@@ -48,12 +63,15 @@ export default({data, pageContext})=>{
             <div className="blog-top">
                 <div className="wrapper-contents">
                      <h2>blog</h2>
-
+                     <div className="cat-heading">
+                        <h3>カテゴリー検索</h3>
+                        <p>カテゴリー<span>{ pageContext.catname }</span>の記事を表示中</p>
+                     </div>
                     { data.blog.edges.map((blogsum)=>(
                         <div key={ blogsum.node.id }>
                             <article className="flex" >
                                 <Link to={`/blog/${ blogsum.node.slug }`} >
-                                <figure>
+                                    <figure>
                                         {
                                             blogsum.node.eyecatch
                                                 ?<Img 
@@ -69,6 +87,9 @@ export default({data, pageContext})=>{
                                         <time>{ blogsum.node.publishDate }</time>
                                         <h3>{ blogsum.node.title }</h3>
                                         <hr/>
+                                        <div className="desc">
+                                            {/* <p>{ renderRichText( blogsum.node.content,options ) }</p> */}
+                                        </div>
                                     </div>
                                     <Link to={`/blog/${ blogsum.node.slug }`} >続きを読む</Link>
                                 </div>
@@ -82,8 +103,8 @@ export default({data, pageContext})=>{
                             { !pageContext.isFirst && (
                                 <Link to={
                                     pageContext.currentPage === 2
-                                    ? `/blog/`
-                                    : `/blog/${pageContext.currentPage - 1}/`
+                                    ? `/cat/${ pageContext.catslug }/`
+                                    : `/cat/${ pageContext.catslug }/${pageContext.currentPage - 1}/`
                                 }>
                                     前のページ
                                 </Link>
@@ -92,7 +113,7 @@ export default({data, pageContext})=>{
                         <li className="next" >
                             { !pageContext.isLast && (
                                 <Link 
-                                to={`/blog/${pageContext.currentPage + 1}/`}>
+                                to={`/cat/${ pageContext.catslug }/${pageContext.currentPage + 1}/`}>
                                     次のページ
                                 </Link>
                             )}
