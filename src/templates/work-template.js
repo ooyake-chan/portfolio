@@ -92,7 +92,7 @@ const options = {
     }
 }
 
-export default ({ data })=>{
+export default ({ data, pageContext })=>{
     const localMenu = (
         <ul>
         <li  id="local-summary">
