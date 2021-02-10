@@ -19,10 +19,11 @@
     figure{
         max-height: 100%;
         height: 450px;
+        margin: $margin-headings 0;
         img{
             width: 100%;
             height: 450px;
-            object-fit: cover;
+            object-fit: fill;
         }
     }
     >div{
@@ -56,6 +57,7 @@
         svg{
             width: 100%;
             height: 50vh;
+            min-height: 400px;
         }
     }
 

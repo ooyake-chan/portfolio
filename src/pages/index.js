@@ -191,6 +191,7 @@ export default ({ data, location }) => {
         <div className="home__others--summary" key={sum.node.id}>
         <time>{sum.node.publishDate}</time>
         <h3>{sum.node.title}</h3>
+        <Link to={`/others/${sum.node.slug}/`} >
           <figure>
               <Img 
               fluid={ sum.node.eyecatch.fluid } 
@@ -198,6 +199,7 @@ export default ({ data, location }) => {
               style={{ height:"100%" }} 
               />
           </figure>
+          </Link>
           <Link to={`/others/${sum.node.slug}/`} >詳細ページへ</Link>
         </div>
       ))}
@@ -214,6 +216,7 @@ export default ({ data, location }) => {
         <article className="home__blog--post">
           <time>{ blog.node.publishDate }</time>
           <h3>{ blog.node.title }</h3>
+          <Link to={`/blog/${blog.node.slug}/`} >
             <figure>
                 <Img 
                 fixed={ blog.node.eyecatch.fixed } 
@@ -221,9 +224,11 @@ export default ({ data, location }) => {
                 style={{ height:"100%", width:"100%" }} 
                 />
             </figure>
+          </Link>
           <Link to={`/blog/${blog.node.slug}/`} >続きを読む</Link>
         </article>
       )) }
+      
     </div>
     <div className="button">
         <div className="button--plime" ><Link to={`/blog/`} >ブログトップページへ</Link></div>
