@@ -1,13 +1,35 @@
 import React from "react"
+import { graphql,useStaticQuery, Link } from "gatsby"
 
 export default ()=>{
+    const data = useStaticQuery(graphql`
+    query {
+        allContentfulCategory {
+          edges {
+            node {
+              categorySlug
+              category
+            }
+          }
+        }
+      }
+    `)
     return(
         <div>
             <div className="blog-footer">
                 <div className="wrapper-contents flex">
                         <div>
                             <h4>カテゴリー一覧</h4>
-                            <a>HTML5/</a><a>CSS3/</a><a>HTML5/</a><a>CSS3/</a><a>HTML5/</a><a>CSS3/</a>
+                            <div className="cat-list">
+                                <ul>
+                                    { data.allContentfulCategory.edges.map((cat) => (
+                                            (cat.node.categorySlug === "works" || cat.node.categorySlug === "others") ||
+                                        <li>
+                                            <Link to={`/cat/${ cat.node.categorySlug }/`} >{ cat.node.category }/</Link>
+                                        </li>
+                                    )) }
+                                </ul>
+                            </div>
                         </div>
                         <div>
                             <h4>月別記事</h4>

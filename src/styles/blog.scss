@@ -1,9 +1,15 @@
 @import "./settings";
-
 .blog-top{
     margin:0  auto;
     padding-top: 25vh;
     @include heading-style;
+    .cat-heading{
+        h3{
+            text-align: center;
+            margin: $margin-texts;
+        }
+        text-align: center;
+    }
     article{
         padding: $margin-contents 0;
         figure{
@@ -43,7 +49,7 @@
             }
         }
     }
-}
+            }
 
 .pagenation{
     margin: $margin-contents auto;
@@ -52,6 +58,7 @@
 }
 
 .blog-footer{
+    @include a-style;
     position: absolute;
     left: 0;
     width: 100vw;
@@ -61,6 +68,7 @@
     .wrapper-contents{
         >div{
             width: 50%;
+            padding: 1.5rem;
         }
         section{
             margin-bottom: $margin-texts;
@@ -70,6 +78,16 @@
         }
         h4{
             margin-bottom: $margin-texts;
+        }
+        .cat-list{
+            ul{
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+        a{
+            display: inline-block;
+            margin: 0.5em;
         }
     }
 }
