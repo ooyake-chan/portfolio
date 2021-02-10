@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+
 import ScrollMagic from "../../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"
 import scrollTo from 'gatsby-plugin-smoothscroll'
 
@@ -106,29 +107,32 @@ export default ({ data, location }) => {
     )}
 
     // ScrollMagic
-    useEffect(()=>{
-      let controller = new ScrollMagic.Controller()
-      let navId = data.works.edges
-      
-      const length = data.works.edges.length
-      console.log(navId, length)
-      navId.forEach(element => {
-          const slug = element.node.slug
+    if ( typeof window !== 'undefined' ) {
+
+      useEffect(()=>{
+        let controller = new ScrollMagic.Controller()
+        let navId = data.works.edges
         
-          new ScrollMagic.Scene({triggerElement: `#summary-${slug}`, duration:"100%"})
-          .setClassToggle(`#local-${slug}`, "nav-local-active")
-          .addTo(controller);
+        const length = data.works.edges.length
+        console.log(navId, length)
+        navId.forEach(element => {
+            const slug = element.node.slug
+          
+            new ScrollMagic.Scene({triggerElement: `#summary-${slug}`, duration:"100%"})
+            .setClassToggle(`#local-${slug}`, "nav-local-active")
+            .addTo(controller);
+        })
+        new ScrollMagic.Scene({triggerElement: "#home__others-id", duration:"100%"})
+        .setClassToggle("#local-others", "nav-local-active")
+        .addTo(controller);
+        new ScrollMagic.Scene({triggerElement: "#home__blog-id", duration:"100%"})
+        .setClassToggle("#local-blog", "nav-local-active")
+        .addTo(controller);
+        new ScrollMagic.Scene({triggerElement: "#home__about-id", duration:"100%"})
+        .setClassToggle("#local-about", "nav-local-active")
+        .addTo(controller);
       })
-      new ScrollMagic.Scene({triggerElement: "#home__others-id", duration:"100%"})
-      .setClassToggle("#local-others", "nav-local-active")
-      .addTo(controller);
-      new ScrollMagic.Scene({triggerElement: "#home__blog-id", duration:"100%"})
-      .setClassToggle("#local-blog", "nav-local-active")
-      .addTo(controller);
-      new ScrollMagic.Scene({triggerElement: "#home__about-id", duration:"100%"})
-      .setClassToggle("#local-about", "nav-local-active")
-      .addTo(controller);
-    })
+    }
 
 
   return (
