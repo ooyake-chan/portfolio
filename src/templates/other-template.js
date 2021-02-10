@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { BLOCKS} from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 import  Img  from "gatsby-image"
 
@@ -72,16 +73,16 @@ const options = {
 
 const localMenu = (
     <ul>
-    <li className="nav-local-active" id="local-summary">
-      <a href="#other-summary">作品概要</a>
+    <li id="local-summary">
+      <button onClick={()=> scrollTo("#other-summary")}>作品概要</button>
     </li>
     <li id="local-blog">
-      <a href="#other-blog">制作の様子</a>
+      <button onClick={()=> scrollTo("#other-blog")}>制作の様子</button>
     </li>
   </ul>
 )
 
-export default ({ data })=>{
+export default ({ data, pageContext })=>{
     return (
         <Layout local={ localMenu }>
             <SEO />
@@ -100,7 +101,7 @@ export default ({ data })=>{
                       alt={ data.contentfulBlogPost.eyecatch.description}
                       style={{ height:"100%" }} 
                       />
-                      : "ないよ"
+                      : ""
                       }
                     </figure>
 
@@ -121,7 +122,6 @@ export default ({ data })=>{
                         }
                     </div>
               </div>
-              <hr />
               <div className="blog-inner">
                   <h4 id="other-blog">制作の様子<span>ブログに移動します</span></h4>
 
@@ -145,10 +145,22 @@ export default ({ data })=>{
                   </div>
               </div>
               <hr />
-                    <div className="post-link">
-                        <a href={`/`}>prev</a>
-                        <a href={`/`}>next</a>
-                    </div>
+              <ul className="post-link">
+                <li className="prev">
+                      { pageContext.previous && (
+                        <Link to={`/others/${pageContext.previous.slug}/`} >
+                          <span>{ pageContext.previous.title }</span>
+                        </Link>
+                      ) }
+                </li>
+                <li className="next">
+                      { pageContext.next && (
+                        <Link to={`/others/${pageContext.next.slug}/`} >
+                          <span>{ pageContext.next.title }</span>
+                        </Link>
+                      ) }
+                </li>
+                </ul>
             </div>
         </Layout>
     )

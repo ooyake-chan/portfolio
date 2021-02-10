@@ -76,7 +76,9 @@
 }
 
 .post-link{
+    @include a-style;
+    margin: $margin-contents auto;
     display: flex;
     justify-content: space-between;
-    margin-bottom: $margin-contents;
+}
 }

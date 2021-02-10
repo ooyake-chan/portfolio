@@ -160,10 +160,22 @@ export default ({ data })=>{
                     <hr />
                 </div>
 
-                <div className="post-link">
-                    <a href={`/`}>prev</a>
-                    <a href={`/`}>next</a>
-                </div>
+                <ul className="post-link">
+                  <li className="prev">
+                      { pageContext.previous && (
+                        <Link to={`/works/${pageContext.previous.slug}/`} >
+                          <span>{ pageContext.previous.title }</span>
+                        </Link>
+                      ) }
+                  </li>
+                  <li className="next">
+                      { pageContext.next && (
+                        <Link to={`/works/${pageContext.next.slug}/`} >
+                          <span>{ pageContext.next.title }</span>
+                        </Link>
+                      ) }
+                  </li>
+                </ul>
             </div>
         </Layout>
     )

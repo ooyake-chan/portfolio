@@ -73,8 +73,9 @@ export default({data, pageContext})=>{
                             <hr/>
                         </div>
                     )) }
+
                     < ul className="pagenation">
-                        <li ClassName="prev" >
+                        <li className="prev" >
                             { !pageContext.isFirst && (
                                 <Link to={
                                     pageContext.currentPage === 2
@@ -85,7 +86,7 @@ export default({data, pageContext})=>{
                                 </Link>
                             )}
                         </li>
-                        <li ClassName="next" >
+                        <li className="next" >
                             { !pageContext.isLast && (
                                 <Link 
                                 to={`/blog/${pageContext.currentPage + 1}/`}>
