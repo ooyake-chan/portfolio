@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
+import ScrollMagic from "ScrollMagic"
 
 export default ({ local })=>{
 const data = useStaticQuery(graphql`
@@ -24,6 +25,7 @@ query {
   }
 }
 `)
+
     return (
         <div>
         <meta charSet="UTF-8" />
@@ -59,7 +61,7 @@ query {
               <li><a href="/blog/">ブログ /</a></li>
             </ul>
           </nav>
-          <nav className="nav__local">
+          <nav className="nav__local"> 
             { local }
           </nav>
         </header>

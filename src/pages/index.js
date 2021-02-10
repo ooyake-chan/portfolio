@@ -1,6 +1,8 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+import ScrollMagic from "ScrollMagic"
+import scrollTo from 'gatsby-plugin-smoothscroll'
 
 import  Img  from "gatsby-image"
 import Toolmap from "../utils/toolMap"
@@ -93,25 +95,50 @@ export const query = graphql`
 
 export default ({ data, location }) => {
 
+  // propsローカルメニュー
   const localMenu = (data) => {
     return (
     <ul>
     { data.edges.map(local=>(
       <li id={`local-${local.node.slug}`} key={local.node.id}>
-      <Link to={`#summary-${local.node.slug}`}>{local.node.title}</Link>
+      <button onClick={()=> scrollTo(`#summary-${local.node.slug}`)}>{local.node.title}</button>
     </li>
     ))}
     <li id="local-others">
-      <a href="#home__others-id">others</a>
+      <button onClick={()=> scrollTo("#home__others-id")}>others</button>
     </li>
     <li id="local-blog">
-      <a href="#home__blog-id">blog</a>
+      <button onClick={()=> scrollTo("#home__blog-id")}>blog</button>
     </li>
     <li id="local-about">
-      <a href="#home__about-id">about me</a>
+      <button onClick={()=> scrollTo("#home__about-id")}>about</button>
     </li>
   </ul>
     )}
+
+    // ScrollMagic
+    let controller = new ScrollMagic.Controller()
+    let navId = data.works.edges
+    
+    const length = data.works.edges.length
+    console.log(navId, length)
+    
+    navId.forEach(element => {
+      const slug = element.node.slug
+    
+      new ScrollMagic.Scene({triggerElement: `#summary-${slug}`, duration:"100%"})
+      .setClassToggle(`#local-${slug}`, "nav-local-active")
+      .addTo(controller);
+    });
+    new ScrollMagic.Scene({triggerElement: "#home__others-id", duration:"100%"})
+    .setClassToggle("#local-others", "nav-local-active")
+    .addTo(controller);
+    new ScrollMagic.Scene({triggerElement: "#home__blog-id", duration:"100%"})
+    .setClassToggle("#local-blog", "nav-local-active")
+    .addTo(controller);
+    new ScrollMagic.Scene({triggerElement: "#home__about-id", duration:"100%"})
+    .setClassToggle("#local-about", "nav-local-active")
+    .addTo(controller);
 
   return (
 <Layout local={ localMenu(data.works) }>
@@ -149,7 +176,6 @@ export default ({ data, location }) => {
           <div className="button">
              <div className="button--plime" ><Link to={`/works/${sum.node.slug}/`} >詳細ページへ</Link></div>
           </div>
-
         </div>
         ))
       }
@@ -162,10 +188,10 @@ export default ({ data, location }) => {
     <div className="wrap__others">
 
       { data.others.edges.map(sum =>(
-              <div className="home__others--summary" key={sum.node.id}>
-              <time>{sum.node.publishDate}</time>
-              <h3>{sum.node.title}</h3>
-              <figure>
+        <div className="home__others--summary" key={sum.node.id}>
+        <time>{sum.node.publishDate}</time>
+        <h3>{sum.node.title}</h3>
+          <figure>
               <Img 
               fluid={ sum.node.eyecatch.fluid } 
               alt={ sum.node.eyecatch.description}
@@ -173,7 +199,7 @@ export default ({ data, location }) => {
               />
           </figure>
           <Link to={`/others/${sum.node.slug}/`} >詳細ページへ</Link>
-            </div>
+        </div>
       ))}
 
     </div>
@@ -188,13 +214,13 @@ export default ({ data, location }) => {
         <article className="home__blog--post">
           <time>{ blog.node.publishDate }</time>
           <h3>{ blog.node.title }</h3>
-          <figure>
-              <Img 
-              fixed={ blog.node.eyecatch.fixed } 
-              alt={ blog.node.eyecatch.description}
-              style={{ height:"100%", width:"100%" }} 
-              />
-          </figure>
+            <figure>
+                <Img 
+                fixed={ blog.node.eyecatch.fixed } 
+                alt={ blog.node.eyecatch.description}
+                style={{ height:"100%", width:"100%" }} 
+                />
+            </figure>
           <Link to={`/blog/${blog.node.slug}/`} >続きを読む</Link>
         </article>
       )) }
@@ -212,7 +238,7 @@ export default ({ data, location }) => {
       <h3>村松美紀</h3>
       <p>1992.11.5</p>
       <div className="about-img">
-        <Img fluid={ data.file.childImageSharp.fluid } />
+          <Img fluid={ data.file.childImageSharp.fluid } />
         </div>
       <div className="wrap__about">
         <div className="home__about--info">
