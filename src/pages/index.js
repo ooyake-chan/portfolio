@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import ScrollMagic from "../../node_modules/scrollmagic/scrollmagic/minified/ScrollMagic.min.js"
+import ScrollMagic from "../../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"
 import scrollTo from 'gatsby-plugin-smoothscroll'
 
 import  Img  from "gatsby-image"
