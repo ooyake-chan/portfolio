@@ -93,13 +93,13 @@ export default ({ data, location }) => {
       <button onClick={()=> scrollTo(`#summary-${local.node.slug}`)}>{local.node.title}</button>
     </li>
     ))}
-    <li id="local-others">
+    <li id="local-others" key="local-others">
       <button onClick={()=> scrollTo("#home__others-id")}>others</button>
     </li>
-    <li id="local-blog">
+    <li id="local-blog" key="local-blog">
       <button onClick={()=> scrollTo("#home__blog-id")}>blog</button>
     </li>
-    <li id="local-about">
+    <li id="local-about" key="local-about">
       <button onClick={()=> scrollTo("#home__about-id")}>about</button>
     </li>
   </ul>
@@ -233,9 +233,9 @@ export default ({ data, location }) => {
       <h3>村松美紀</h3>
       <p>1992.11.5</p>
       <div className="about-img">
-        <figre data-sal="slide-up">
+        <figure data-sal="slide-up">
           <Img fluid={ data.file.childImageSharp.fluid } />
-        </figre>
+        </figure>
         </div>
       <div className="wrap__about">
         <div className="home__about--info">
