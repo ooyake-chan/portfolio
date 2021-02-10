@@ -18,11 +18,8 @@ query($id: String!) {
       publishDateJP: publishDate(formatString: "YYYY年MM月DD日")
       publishDate
       eyecatch {
-        fluid(maxWidth: 1200) {
-          base64
-          tracedSVG
-          srcWebp
-          srcSetWebp
+        fluid(maxWidth: 1000) {
+          ...GatsbyContentfulFluid_withWebp
         }
         description
       }
@@ -49,9 +46,10 @@ query($id: String!) {
         slug
         publishDateJP:publishDate(formatString: "YYYY年MM月DD日")
         eyecatch {
-          fixed {
+          fixed(width: 340) {
             base64
-            tracedSVG
+            src
+            srcSet
             aspectRatio
             srcWebp
             srcSetWebp

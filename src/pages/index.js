@@ -15,7 +15,7 @@ export const query = graphql`
   query {
     file(relativePath: {eq: "aboutme.jpg"}) {
       childImageSharp {
-        fluid{
+        fluid(maxWidth: 1000){
           ...GatsbyImageSharpFluid
         }
       }
@@ -32,12 +32,8 @@ export const query = graphql`
             raw
           }
           eyecatch {
-            fluid {
-              base64
-              tracedSVG
-              aspectRatio
-              srcWebp
-              srcSetWebp
+            fluid(maxWidth: 1000) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
           childContentfulBlogPostWorkDataJsonNode {
@@ -61,11 +57,8 @@ export const query = graphql`
           publishDate(formatString: "YYYY年MM月")
           slug
           eyecatch {
-            fluid{
-              base64
-              tracedSVG
-              srcWebp
-              srcSetWebp
+            fluid(maxWidth: 1000){
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
@@ -79,12 +72,8 @@ export const query = graphql`
           publishDate(formatString: "YYYY年MM月DD日")
           slug
           eyecatch {
-            fixed(width: 300) {
-              base64
-              tracedSVG
-              aspectRatio
-              srcWebp
-              srcSetWebp
+            fluid(maxWidth: 1000){
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
@@ -221,7 +210,7 @@ export default ({ data, location }) => {
           <Link to={`/blog/${blog.node.slug}/`} >
             <figure>
                 <Img 
-                fixed={ blog.node.eyecatch.fixed } 
+                fluid={ blog.node.eyecatch.fluid } 
                 alt={ blog.node.eyecatch.description}
                 style={{ height:"100%", width:"100%" }} 
                 />
