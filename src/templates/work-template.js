@@ -61,8 +61,7 @@ query($id: String!) {
           }
         }
       }
-    }
-    contentfulBlogPostWorkDataJsonNode {
+      workData {
         links {
           source
           target
@@ -72,6 +71,7 @@ query($id: String!) {
           label
         }
       }
+  }
   }
 `
 
@@ -131,7 +131,7 @@ export default ({ data })=>{
                     </div>
                     <div className="toolmap">
                         <h4 id="work-toolmap">ツールマップ</h4>
-                        <Toolmap data={data.contentfulBlogPostWorkDataJsonNode} id="work" />
+                        <Toolmap data={data.contentfulBlogPost.workData} id="work" />
                     </div>
                     <div className="detail">
                         { renderRichText(data.contentfulBlogPost.content, options) }
