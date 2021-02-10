@@ -108,7 +108,7 @@ export default({ data, pageContext })=>{
                       <div className="relation flex">
                         { data.contentfulBlogPost.postsLink
                         ?data.contentfulBlogPost.postsLink.map(link =>(
-                          <article>
+                          <article key={`postlink${link.slug}`}>
                               <time>{ link.publishDateJP }</time>
                               <h5>{link.title}</h5>
                               <figure>

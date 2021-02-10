@@ -215,7 +215,7 @@ export default ({ data, location }) => {
     <div className="wrap__blog">
 
       { data.blog.edges.map((blog)=>(
-        <article className="home__blog--post">
+        <article className="home__blog--post" key={blog.node.id}>
           <time>{ blog.node.publishDate }</time>
           <h3>{ blog.node.title }</h3>
           <Link to={`/blog/${blog.node.slug}/`} >
