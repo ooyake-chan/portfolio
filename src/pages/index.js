@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 
-import ScrollMagic from "../../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"
+// import ScrollMagic from "../../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"
 import scrollTo from 'gatsby-plugin-smoothscroll'
 
 import  Img  from "gatsby-image"
@@ -108,7 +108,7 @@ export default ({ data, location }) => {
 
     // ScrollMagic
     if ( typeof window !== 'undefined' ) {
-
+      const ScrollMagic = require('../../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js')
       useEffect(()=>{
         let controller = new ScrollMagic.Controller()
         let navId = data.works.edges
