@@ -76,7 +76,7 @@ export const query = graphql`
         node {
           id
           title
-          publishDate(formatString: "YYYY年MM月")
+          publishDate(formatString: "YYYY年MM月DD日")
           slug
           eyecatch {
             fixed(width: 300) {

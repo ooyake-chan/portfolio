@@ -68,6 +68,9 @@ $margin-texts: 0.5rem;
         &:visited{
             color: $visited-color;
         }
+        &:hover{
+            text-decoration: underline;
+        }
     }
 }
 
