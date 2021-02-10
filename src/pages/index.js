@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import ScrollMagic from "ScrollMagic"
@@ -111,23 +111,27 @@ export default ({ data, location }) => {
     
     const length = data.works.edges.length
     console.log(navId, length)
-    
-    navId.forEach(element => {
-      const slug = element.node.slug
-    
-      new ScrollMagic.Scene({triggerElement: `#summary-${slug}`, duration:"100%"})
-      .setClassToggle(`#local-${slug}`, "nav-local-active")
+
+
+    useEffect(()=>{
+      navId.forEach(element => {
+          const slug = element.node.slug
+        
+          new ScrollMagic.Scene({triggerElement: `#summary-${slug}`, duration:"100%"})
+          .setClassToggle(`#local-${slug}`, "nav-local-active")
+          .addTo(controller);
+      })
+      new ScrollMagic.Scene({triggerElement: "#home__others-id", duration:"100%"})
+      .setClassToggle("#local-others", "nav-local-active")
       .addTo(controller);
-    });
-    new ScrollMagic.Scene({triggerElement: "#home__others-id", duration:"100%"})
-    .setClassToggle("#local-others", "nav-local-active")
-    .addTo(controller);
-    new ScrollMagic.Scene({triggerElement: "#home__blog-id", duration:"100%"})
-    .setClassToggle("#local-blog", "nav-local-active")
-    .addTo(controller);
-    new ScrollMagic.Scene({triggerElement: "#home__about-id", duration:"100%"})
-    .setClassToggle("#local-about", "nav-local-active")
-    .addTo(controller);
+      new ScrollMagic.Scene({triggerElement: "#home__blog-id", duration:"100%"})
+      .setClassToggle("#local-blog", "nav-local-active")
+      .addTo(controller);
+      new ScrollMagic.Scene({triggerElement: "#home__about-id", duration:"100%"})
+      .setClassToggle("#local-about", "nav-local-active")
+      .addTo(controller);
+    })
+
 
   return (
 <Layout local={ localMenu(data.works) }>
