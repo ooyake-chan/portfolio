@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
-import ScrollMagic from "ScrollMagic"
 
 export default ({ local })=>{
 const data = useStaticQuery(graphql`

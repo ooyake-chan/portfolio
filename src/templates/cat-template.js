@@ -1,7 +1,5 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { BLOCKS } from "@contentful/rich-text-types"
 
 import  Img  from "gatsby-image"
 
@@ -38,19 +36,6 @@ query($catid: String!, $skip: Int!, $limit: Int!) {
     }
   }
 `
-const options = {
-    renderNode: {
-        [ BLOCKS.HEADING_4]: (node, children) => (
-        <p>{ children }</p>
-            ),
-        [ BLOCKS.HEADING_5]: (node, children) => (
-        <p>{ children }</p>
-        ),
-        [ BLOCKS.HEADING_6]: (node, children) => ( 
-        <p>{ children }</p>
-        ),
-    }
-}
 
 export default({data, pageContext})=>{
     return (
@@ -84,7 +69,6 @@ export default({data, pageContext})=>{
                                         <h3>{ blogsum.node.title }</h3>
                                         <hr/>
                                         <div className="desc">
-                                            {/* <p>{ renderRichText( blogsum.node.content,options ) }</p> */}
                                         </div>
                                     </div>
                                     <Link to={`/blog/${ blogsum.node.slug }`} >続きを読む</Link>
