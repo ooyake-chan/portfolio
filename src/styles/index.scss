@@ -3,7 +3,12 @@
 // body
 h2{
     font-size: 10em;
+    text-align: right;
+}
+#hero-head{
+    font-size: 10em;
     position: absolute;
+    top: 35vh;
     right: 60px;
     z-index: -1;
     width: 50vw;
@@ -37,7 +42,8 @@ h2{
     @include toolmap-style;
     width: 70%;
     margin:0 auto;
-    margin-top: 10em;
+    margin-top: 5em;
+    margin-bottom: 10em;
     .button{
         @include primery-button;
     }
@@ -46,9 +52,12 @@ h2{
         padding: 30px;
         border: 1px solid $text-color;
         background: $main-color;
+        time{
+            display: inline-block;
+        }
         h3{
             font-size: 2rem;
-            margin:$margin-headings 0;
+            margin:$margin-texts 0;
         }
         figure{
             margin: $margin-headings auto;
@@ -76,12 +85,12 @@ h2{
 .home__others{
     @include a-style;
     width: 70%;
-    margin: 0 auto;
-    // margin-top: 10em;
+    margin:0 auto;
+    margin-top: 5em;
+    margin-bottom: 10em;
     .wrap__others{
         display: flex;
         flex-wrap: wrap;
-        // justify-content: space-between;
     }
     &--summary{
         width: 33%;
@@ -89,8 +98,7 @@ h2{
         background: $main-color;
         h3{
             font-size: 1.25rem;
-            margin-top:0.5em ;
-            margin-bottom: 1.5em;
+            margin: $margin-texts 0;
         }
         figure{
             position: relative;
@@ -105,8 +113,9 @@ h2{
 .home__blog{
     @include a-style;
     width: 70%;
-    margin: 0 auto;
-    // margin-top: 10em;
+    margin:0 auto;
+    margin-top: 5em;
+    margin-bottom: 10em;
     .button{
         @include primery-button;
     }
@@ -121,8 +130,7 @@ h2{
         background: $main-color;
         h3{
             font-size: 1.25em;
-            margin-top:0.5em ;
-            margin-bottom: 0.5em;
+            margin: $margin-texts 0;
         }
         figure{
             max-height: 100%;

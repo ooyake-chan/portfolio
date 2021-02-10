@@ -30,6 +30,9 @@ query($id: String!) {
       information {
         raw
       }
+      concept{
+        raw
+      }
       content {
         raw
         references{
@@ -126,15 +129,20 @@ export default ({ data })=>{
                             />
                         </figure>
                     <div className="summary">
+                      <div className="flex">
                         <div className="summary--info">
                             { renderRichText(data.contentfulBlogPost.information, {}) }
                         </div>
+                        <div className="summary--concept">
+                            { renderRichText(data.contentfulBlogPost.concept, {}) }
+                    </div>
+                      </div>
                     </div>
                     <div className="toolmap">
                         <h4 id="work-toolmap">ツールマップ</h4>
                         <Toolmap data={data.contentfulBlogPost.workData} id="work" />
                     </div>
-                    <div className="detail">
+                    <div className="detail" id="work-detail">
                         { renderRichText(data.contentfulBlogPost.content, options) }
                     </div>
                 </div>

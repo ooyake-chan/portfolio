@@ -2,6 +2,7 @@
 .blog-top{
     margin:0  auto;
     padding-top: 25vh;
+    @include a-style;
     @include heading-style;
     .cat-heading{
         h3{
@@ -27,8 +28,13 @@
 
 .blog-post{
     margin:0  auto;
+    padding: 10px;
     padding-top: 25vh;
+    @include a-style;
     @include heading-style;
+    h3{
+        margin: $margin-headings 0;
+    }
     .eyecatch figure{
         margin: 60px 0;
         width:100%;

@@ -50,8 +50,7 @@ export default({data, pageContext})=>{
                 <div className="wrapper-contents">
                      <h2>blog</h2>
                     { data.blog.edges.map((blogsum)=>(
-                        <div>
-                            <article className="flex" key={ blogsum.node.id }>
+                        <div key={ blogsum.node.id }>
                                 <figure>
                                     <Img 
                                     fixed={ blogsum.node.eyecatch.fixed } 

@@ -4,6 +4,18 @@
     @include a-style;
     margin:0  auto;
     padding-top: 25vh;
+    p{
+        line-height: 1.5em;
+    }
+    h2{
+        position: absolute;
+        top: 15vh;
+        right: 60px;
+    }
+    h3{
+        font-size: 2rem;
+        margin:$margin-texts 0;
+    }
     figure{
         max-height: 100%;
         height: 450px;
@@ -23,8 +35,20 @@
         justify-content: space-between;
         &--info {
             @include info-style;
+            width: 50%;
         }
+        &--concept{
+            width: 50%;
+            padding: 2rem;
+            background: darken($main-color, 15%);
+            h4{
+                margin: $margin-texts 0 ;
             }
+            p{
+                line-height: 1.5em
+            }
+        }
+    }
 
     .toolmap{
         @include heading-style;
@@ -37,22 +61,29 @@
 
     .detail{
         @include heading-style;
-        section{
-            margin-bottom: 3rem;
-        }
-        section:last-of-type{
-            margin-bottom: 0;
-        }
-        p{
-            line-height: 1.25em;
-        }
         img, video{
+            display: inline-block;
             width: 50%;
+            max-height: 300px;
+            min-height: 200px;
+            margin-bottom: $margin-headings;
+            object-fit: cover;
         }
+        img +p, video +p{
+            width: 47%;
+            display: block;
+            float: right;
         } 
+    }
 
 }
 .blog-inner{
+    @include heading-style;
+    @include a-style;
+    h5{
+        border: none;
+        padding: 0;
+    }
     margin-bottom: $margin-contents;
     h4 span{
         font-weight: 100;
@@ -61,6 +92,7 @@
     .summary{
         margin: 30px 0;
         article{
+            width: 33%;
             padding: 1em;
             h5{
                 margin: $margin-texts 0;

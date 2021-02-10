@@ -109,6 +109,11 @@ $margin-texts: 0.5rem;
     }
 
     @mixin info-style{
+        h1,h2,h3,h4,h5,h6{
+            position: static;
+            width: auto;
+            text-align: left;
+        }
         h4{
             margin-right: 0.5em;
             float: left;
