@@ -106,14 +106,12 @@ export default ({ data, location }) => {
     )}
 
     // ScrollMagic
-    let controller = new ScrollMagic.Controller()
-    let navId = data.works.edges
-    
-    const length = data.works.edges.length
-    console.log(navId, length)
-
-
     useEffect(()=>{
+      let controller = new ScrollMagic.Controller()
+      let navId = data.works.edges
+      
+      const length = data.works.edges.length
+      console.log(navId, length)
       navId.forEach(element => {
           const slug = element.node.slug
         
