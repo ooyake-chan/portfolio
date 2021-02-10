@@ -33,6 +33,7 @@ query {
         <title>Document</title>
         <header>
           <h1><Link to="/">miki's portfolio</Link></h1>
+            <input type="checkbox" id="nav__gloval--checkbox"  />
           <nav className="nav__gloval">
             <ul className="nav__gloval--primary-list">
               <li>
@@ -63,6 +64,9 @@ query {
           </nav>
           <nav className="nav__local"> 
             { local }
+            <label for="nav__gloval--checkbox">
+              <span className="mobile-menu__button">menu open</span>
+            </label>
           </nav>
         </header>
         </div>

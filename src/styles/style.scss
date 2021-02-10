@@ -41,3 +41,15 @@ hr{
     width: 70%;
     margin:0 auto;    
 }
+
+@media(max-width: 700px){
+    body{
+        overflow-x: hidden;
+        padding: 10px;
+        font-size: 14px;
+    }
+    .wrapper-contents{
+        width: 90%;
+        margin-left: 40px;
+    }
+}

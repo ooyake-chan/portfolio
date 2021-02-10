@@ -1,8 +1,10 @@
 @import "../styles/_settings.scss";
+#nav__gloval--checkbox{
+    display: none;
+}
 // header
 header{
     h1{
-        font-size: 1.5em;
         position: fixed;
         z-index: 10;
         font-size: 1.5em;
@@ -93,11 +95,73 @@ header{
         font-size: 1.3em;
         transition: 0.5s;
     }
+    .mobile-menu__button{
+        display: none;
     }
+}
 // footer
 .copyright{
     position: fixed;
     right: 60px;
     top: 90vh;
     font-size: 0.7em;
+}
+
+@media(max-width: 700px){
+       header{
+           h1{
+               position: fixed;
+               top: 0;
+               left: 0;
+               width: 100%;
+               padding: 10px;
+               background: rgba($main-color, $alpha: 0.9);
+           }
+           .nav__gloval{
+               top: 0;
+               width: 100%;
+               height: 100%;
+               border-left: 1px solid $text-color;
+               padding: 10px;
+               background: $main-color;
+               transform: translateX(120%);
+               transition: 0.5s;
+               ul{
+                   flex-direction: column;
+               }
+               &--secondary-list{
+                   position: static;
+                   opacity: 1;
+                   transform: none;
+               }
+            }
+            #nav__gloval--checkbox:checked ~ .nav__gloval{
+                transform: translateX(40%);
+            }
+       }
+    .nav__local{
+        ul{
+            position: fixed;
+            left: 20px;
+            top: 40px;
+            font-size: 0.75rem;
+            button{
+                color: rgba($color: #ffffff, $alpha: 0);
+            }
+        }
+        .mobile-menu__button{
+            position: fixed;
+            bottom: 10%;
+            left: -20px;
+            display: inline-block;
+            padding: 1em ;
+            background: $text-color;
+            color: $main-color;
+            transform: rotate(-90deg);
+        }
+    }
+    .copyright{
+        right: 10px;
+        top: 95vh;
+    }
 }
