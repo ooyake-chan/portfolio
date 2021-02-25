@@ -10,7 +10,7 @@ module.exports = {
     title:`mikisPortfolio`,
     description:`村松美紀のポートフォリオサイトです`,
     lang:`ja`,
-    siteUrl:`https://ooyakechan.shop/portfolio`,
+    siteUrl:`https://ooyakechan-portfolio.netlify.app/`,
     locale:`ja_JP`,
     fbappid:`xxxxx`,
   },

@@ -52,16 +52,20 @@ const options = {
     }
 }
 
-export default({data, pageContext})=>{
+export default({data, pageContext, location})=>{
     return (
         <Layout>
-            <SEO />
+            <SEO 
+                pagetitle="ブログカテゴリ一覧"
+                pagedesc="mikisPortfolioのブログカテゴリ一覧"
+                pagepath={location.pathname}
+            />
             <div className="blog-top">
                 <div className="wrapper-contents">
                      <h2>blog</h2>
                      <div className="cat-heading">
-                        <h3>カテゴリー検索</h3>
-                        <p>カテゴリー<span>{ pageContext.catname }</span>の記事を表示中</p>
+                        <h3>カテゴリ検索</h3>
+                        <p>カテゴリ<span>{ pageContext.catname }</span>の記事を表示中</p>
                      </div>
                     { data.blog.edges.map((blogsum)=>(
                         <div key={ blogsum.node.id }>

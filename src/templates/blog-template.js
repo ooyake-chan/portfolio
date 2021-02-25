@@ -37,10 +37,14 @@ query($skip: Int!, $limit: Int!) {
   }
 `
 
-export default({data, pageContext})=>{
+export default({data, pageContext, location})=>{
     return (
         <Layout>
-            <SEO />
+            <SEO 
+                pagetitle="ブログ"
+                pagedesc="mikisPortfolioのブログ"
+                pagepath={location.pathname}
+            />
             <div className="blog-top">
                 <div className="wrapper-contents">
                      <h2>blog</h2>

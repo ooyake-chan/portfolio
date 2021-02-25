@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { BLOCKS } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer"
 
 import  Img  from "gatsby-image"
 
@@ -22,6 +23,15 @@ query($id: String!) {
           ...GatsbyContentfulFluid_withWebp
         }
         description
+        file {
+          details {
+            image {
+              width
+              height
+            }
+          }
+          url
+        }
       }
       content {
         raw
@@ -67,10 +77,19 @@ query($id: String!) {
     }
 }
 
-export default({ data, pageContext })=>{
+export default({ data, pageContext, location })=>{
     return (
         <Layout>
-            <SEO />
+            <SEO
+              pagetitle={data.contentfulBlogPost.title}
+              pagedesc={`${documentToPlainTextString(
+                data.contentfulBlogPost.content.json
+              ).slice(0, 70)}…`}
+              pagepath={location.pathname}
+              blogimg={`https:${data.contentfulBlogPost.eyecatch.file.url}`}
+              pageimgw={data.contentfulBlogPost.eyecatch.file.details.image.width}
+              pageimgh={data.contentfulBlogPost.eyecatch.file.details.image.height}
+            />
             <div className="blog-post">
                 <div className="eyecatch">
                   <figure>

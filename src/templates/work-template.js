@@ -23,18 +23,28 @@ query($id: String!) {
           ...GatsbyContentfulFluid_withWebp
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 5d23600... feat:メタデータの設定
         description
         file {
           details {
             image {
               width
               height
+<<<<<<< HEAD
             }
           }
           url
         }
 >>>>>>> 5857e4e... fix:画像の切り取りサイズ・動画のコントロールボタンの追加
+=======
+      }
+          }
+          url
+        }
+>>>>>>> 5d23600... feat:メタデータの設定
       }
       information {
         raw
@@ -94,7 +104,7 @@ const options = {
     }
 }
 
-export default ({ data, pageContext })=>{
+export default ({ data, pageContext, location })=>{
     const localMenu = (
         <ul>
         <li  id="local-summary">
@@ -114,7 +124,14 @@ export default ({ data, pageContext })=>{
 
     return (
         <Layout local={ localMenu }>
-            <SEO />
+            <SEO
+              pagetitle={data.contentfulBlogPost.title}
+              pagedesc={`${data.contentfulBlogPost.title_sub} `|| ""}
+              pagepath={location.pathname}
+              blogimg={`https:${data.contentfulBlogPost.eyecatch.file.url}`}
+              pageimgw={data.contentfulBlogPost.eyecatch.file.details.image.width}
+              pageimgh={data.contentfulBlogPost.eyecatch.file.details.image.height}
+            />
             <div className="wrapper-contents">
                 <div className="work">
                 <h2>works</h2>
