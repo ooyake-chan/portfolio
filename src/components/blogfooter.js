@@ -19,7 +19,7 @@ export default ()=>{
             <div className="blog-footer">
                 <div className="wrapper-contents flex">
                         <div>
-                            <h4>カテゴリー一覧</h4>
+                            <h4>カテゴリ一覧</h4>
                             <div className="cat-list">
                                 <ul>
                                     { data.allContentfulCategory.edges.map((cat) => (
