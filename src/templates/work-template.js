@@ -19,10 +19,22 @@ query($id: String!) {
       publishDateJP:publishDate(formatString: "YYYY年MM月")
       publishDate
       eyecatch {
-        description
         fluid(maxWidth: 1000) {
           ...GatsbyContentfulFluid_withWebp
         }
+<<<<<<< HEAD
+=======
+        description
+        file {
+          details {
+            image {
+              width
+              height
+            }
+          }
+          url
+        }
+>>>>>>> 5857e4e... fix:画像の切り取りサイズ・動画のコントロールボタンの追加
       }
       information {
         raw
@@ -39,11 +51,8 @@ query($id: String!) {
               file{
                 url
               }
-            fixed(width: 1600) {
-              width
-              height
-              src
-              srcSet
+            fluid(maxWidth: 1600) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
@@ -53,13 +62,8 @@ query($id: String!) {
         slug
         publishDateJP:publishDate(formatString: "YYYY年MM月DD日")
         eyecatch {
-          fixed( width:340 ) {
-            base64
-            src
-            srcSet
-            aspectRatio
-            srcWebp
-            srcSetWebp
+          fluid( maxWidth:340 ) {
+            ...GatsbyContentfulFluid_withWebp
           }
         }
       }
@@ -82,7 +86,7 @@ const options = {
         [ BLOCKS.EMBEDDED_ASSET]: node => {
             const movie = (node.data.target.file.url).match(/mp4$/)
             if(movie){
-                return <video src={node.data.target.file.url} autoPlay muted loop />
+                return <video src={node.data.target.file.url} autoPlay muted loop controls />
             }else{
                 return <img src={node.data.target.file.url } alt=""/>
             }
@@ -123,7 +127,7 @@ export default ({ data, pageContext })=>{
                             className="eyecatch" 
                             fluid={ data.contentfulBlogPost.eyecatch.fluid } 
                             alt={ data.contentfulBlogPost.eyecatch.description}
-                            style={{ height:"100%" }} 
+                            style={{ width:"100%" }} 
                             />
                         </figure>
                     <div className="summary">
@@ -154,8 +158,8 @@ export default ({ data, pageContext })=>{
                             <h5>{link.title}</h5>
                             <figure>
                               <Img 
-                              fixed={ link.eyecatch.fixed }
-                              style={{ width:"100%", height:"100%" }}
+                              fluid={ link.eyecatch.fluid }
+                              style={{ height:"100%" }}
                               />
                             </figure>
                             <Link to={`/blog/${link.slug}/`} >続きを読む</Link>
