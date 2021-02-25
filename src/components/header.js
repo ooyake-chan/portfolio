@@ -36,7 +36,7 @@ query {
           <nav className="nav__gloval">
             <ul className="nav__gloval--primary-list">
               <li>
-                <a href="http://localhost:8000/">トップページ /</a>
+              <Link to="/">トップページ /</Link>
               </li>
               <li>
                 <p>制作物 /</p>

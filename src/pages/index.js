@@ -137,7 +137,7 @@ export default ({ data, location }) => {
 
   return (
 <Layout local={ localMenu(data.works) }>
-<SEO pagepath={location.pathname}/>
+<SEO />
   <div className="home__heroimage">
     <h2 id="hero-head">portfolio</h2>
     <div id="particle-canvas" />

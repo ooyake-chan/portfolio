@@ -92,7 +92,7 @@ header{
         }
     }
     .nav-local-active button{
-        font-size: 1.3em;
+        font-size: 1rem;
         transition: 0.5s;
     }
     .mobile-menu__button{
@@ -147,6 +147,14 @@ header{
             font-size: 0.75rem;
             button{
                 color: rgba($color: #ffffff, $alpha: 0);
+                position: absolute;
+                left: calc( 0% + 3px );
+                transform: translateY(40%);
+                width: 30px;
+                height: 15px;
+                padding: 0;
+                overflow: hidden;
+                z-index: 10;
             }
         }
         .mobile-menu__button{

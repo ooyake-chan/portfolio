@@ -30,10 +30,10 @@ export default props => {
 
     const imgurl = props.pageimg
     ? `${data.site.siteMetadata.siteUrl}${props.pageimg}`
-    : props.blogimg || `${data.site.siteMetadata.siteUrl} /thumb.jpg`
+    : props.blogimg || `${data.site.siteMetadata.siteUrl} /thumb.png`
 
-    const imgw = props.pageimgw || 1280
-    const imgh = props.pageimgh || 640
+    const imgw = props.pageimgw || 1600
+    const imgh = props.pageimgh || 840
 
     return(
         <Helmet>
