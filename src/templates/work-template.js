@@ -33,10 +33,6 @@ query($id: String!) {
           url
         }
       }
-          }
-          url
-        }
-      }
       information {
         raw
       }
