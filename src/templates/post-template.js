@@ -12,6 +12,9 @@ import Blogfooter from "../components/blogfooter"
 
 import "../styles/blog.scss"
 
+import "../../node_modules/highlight.js/styles/shades-of-purple.css"
+import hljs from "highlight.js"
+
 export const query = graphql`
 query($id: String!) {
     contentfulBlogPost(id: { eq: $id }) {
@@ -71,13 +74,26 @@ query($id: String!) {
   `
   const options = {
     renderNode: {
-        [ BLOCKS.EMBEDDED_ASSET]: node => {
-            return <Img fixed={node.data.target.fixed} />
-        }
-    }
+        [ BLOCKS.EMBEDDED_ASSET]: node => (
+            <a href={ node.data.target.file.url } target="blank"><Img fixed={node.data.target.fixed} /></a>
+        )
+    },
+    renderMark: {
+      [ MARKS.CODE ]: children => (
+        <pre><code>{children}</code></pre>
+      )
+    },
+    renderText: text => {
+      return text.split("\n").reduce((children, textSegment, index) => {
+        return [...children, index > 0 && <br key={index} />, textSegment]
+      }, [])
+    },
 }
 
-export default({ data, pageContext, location })=>{
+  useEffect(()=>{
+    hljs.highlightAll()
+  })
+
     return (
         <Layout>
             <SEO
