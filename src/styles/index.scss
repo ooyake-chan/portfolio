@@ -148,31 +148,20 @@ h2{
     width: 70%;
     margin: 0 auto;
     padding: 30px;
-    h3{
-        font-size: 1.5em;
-        margin: 1em 0;
-    }
-    h4{
-        font-weight: bold;
-        margin-bottom: 1em;
-    }
     img{
         margin: 30px 0;
     }
-    section{
-        margin-top: 1.5em;
+    h3{
+        font-size: 31px;
+        margin:16px 0;
     }
-    .wrap__about{
-        display: flex;
-        justify-content: space-between;
+    h4{
+        font-size: 24px;
+        margin-top: 72px;
+        margin-bottom: 24px;
     }
-    &---info{
-        width: 50%;
-    }
-    &--aboutmap{
-        width: 50%;
-        height: 100px;
-        background: $text-color;
+    p, li{
+        line-height: 1.5;
     }
 }
 

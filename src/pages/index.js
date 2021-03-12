@@ -2,7 +2,6 @@ import React, { useEffect } from "react"
 import { graphql, Link } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 
-// import ScrollMagic from "../../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"
 import scrollTo from 'gatsby-plugin-smoothscroll'
 
 import  Img  from "gatsby-image"
@@ -134,7 +133,6 @@ export default ({ data, location }) => {
       })
     }
 
-
   return (
 <Layout local={ localMenu(data.works) }>
 <SEO />
@@ -249,24 +247,23 @@ export default ({ data, location }) => {
             <h4>略歴</h4>
             <ul>
               <li>1992年　神奈川県生まれ千葉県育ち</li>
-              <li>2015年　多摩美術大学情報デザイン学科情報デザインコース</li>
+              <li>2015年　多摩美術大学情報デザイン学科情報デザインコース　卒業</li>
             </ul>
           </section>
           <section>
-            <h4>好きなこと</h4>
-            <p>あいうえおあいうえお</p>
+            <h4>好きな言葉「罪を憎んで人を憎まず」</h4>
+            <p>
+            失敗を責める時、人格とは分けて扱います。人に対しても自分に対してもそういう考えでいたいです
+            </p>
           </section>
           <section>
-            <h4>好きな言葉</h4>
-            <p>あいうえおあいうえお</p>
+            <h4>モットー「俯瞰する・全体像を掴む」</h4>
+            <p>
+            始めたばかりの仕事に慣れるために、自分のポジションは全体の工程のどこにあたるかを考えます。<br/>
+            自分にはわからない、関係ない部署の仕事の内容でも、知っていくと全体が繋がってくる感覚があります。<br/>
+            仕事の全体像を掴み周りを見渡せるようになると、協力できる場面が増えます
+            </p>
           </section>
-          <section>
-            <h4>モットー</h4>
-            <p>あいうえおあいうえお</p>
-          </section>
-        </div>
-        <div className="home__about--aboutmap">
-          <div id="aboutmap" />
         </div>
       </div>
     </div>
