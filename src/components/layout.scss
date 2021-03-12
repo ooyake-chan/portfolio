@@ -15,12 +15,13 @@ header{
     .nav__gloval{
         z-index: 10;
         position: fixed;
-        right: 60px;
+        right: 30px;
         &--primary-list{
             display: flex;
             li{
                 margin-right: 1em;
                 padding: 1em;
+                padding-top: 0;
             }
             :hover .nav__gloval--secondary-list{
                 opacity: 1;
@@ -60,6 +61,8 @@ header{
             font-size: 0.8em;
             color: $text-color;
             transition: 0.5s;
+            width: calc(100vw * 0.11);
+            text-align: left;
         }
         ul{
             height: 75vh;
