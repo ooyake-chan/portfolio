@@ -17,7 +17,7 @@ query($id: String!) {
       publishDateJP:publishDate(formatString: "YYYY年MM月")
       publishDate
       eyecatch {
-        fluid(maxWidth: 1000) {
+        fluid(maxWidth: 960, quality: 100) {
           ...GatsbyContentfulFluid_withWebp
         }
         description
@@ -34,7 +34,7 @@ query($id: String!) {
               file{
                 url
               }
-            fixed(width: 1600) {
+            fixed(width: 640) {
               width
               height
               src
@@ -64,7 +64,7 @@ query($id: String!) {
 const options = {
   renderNode: {
       [ BLOCKS.EMBEDDED_ASSET]: node => {
-          return <Img fixed={node.data.target.fixed} />
+          return  <a href={ node.data.target.file.url } target="blank"><Img fixed={node.data.target.fixed} /></a>
       }
   }
 }

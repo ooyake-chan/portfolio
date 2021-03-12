@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql, Link } from "gatsby"
-import { BLOCKS } from "@contentful/rich-text-types"
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer"
 
@@ -22,7 +22,7 @@ query($id: String!) {
       publishDateJP: publishDate(formatString: "YYYY年MM月DD日")
       publishDate
       eyecatch {
-        fluid(maxWidth: 1000) {
+        fluid(maxWidth: 960, quality: 100) {
           ...GatsbyContentfulFluid_withWebp
         }
         description
@@ -45,11 +45,22 @@ query($id: String!) {
             file {
               url
             }
-            fixed(width: 500) {
-              width
-              height
-              src
-              srcSet
+            fluid(maxWidth: 640) {
+              ...GatsbyContentfulFluid_withWebp
+            }
+          }
+          ... on ContentfulBlogPost {
+            contentful_id
+            title
+            slug
+            category {
+              categorySlug
+            }
+            eyecatch {
+              fluid(maxWidth: 960, quality: 100) {
+                ...GatsbyContentfulFluid_withWebp
+              }
+              description
             }
           }
         }
@@ -70,13 +81,55 @@ query($id: String!) {
         }
       }
     }
+    file(relativePath: {eq: "thumb.png"}) {
+      childImageSharp {
+        fluid(maxWidth: 960){
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
   }
   `
+
+  export default({ data, pageContext, location })=>{
+
+  // renderRichTextの設定  
   const options = {
     renderNode: {
         [ BLOCKS.EMBEDDED_ASSET]: node => (
-            <a href={ node.data.target.file.url } target="blank"><Img fixed={node.data.target.fixed} /></a>
-        )
+            <a href={ node.data.target.file.url } target="blank">
+              <Img 
+                  fluid={node.data.target.fluid} 
+                  style={{
+                    width:"100%", 
+                    maxWidth:"640px", 
+                    margin:"0 auto",
+                    marginBottom: "20px",
+                }} />
+            </a>
+        ),
+        [ INLINES.ENTRY_HYPERLINK ]: node => (  
+          <Link to={`/${node.data.target.category[0].categorySlug}/${node.data.target.slug}`}>{ node.data.target.title }</Link>
+        ),
+        [ INLINES.EMBEDDED_ENTRY]: node =>(
+          <Link to={`/${node.data.target.category[0].categorySlug}/${node.data.target.slug}`}>{ node.data.target.title }</Link>
+        ),
+        [ BLOCKS.EMBEDDED_ENTRY]: node =>{ 
+          return (
+            <article key={`entry${node.data.target.slug}`}>
+            <Link to={`/${ node.data.target.category[0].categorySlug }/${ node.data.target.slug }/`} >
+              <h5>{node.data.target.title}</h5>
+              <figure>
+                <Img 
+                fluid={ node.data.target.eyecatch.fluid }
+                style={{ width:"100%", height:"100%" }}
+                />
+              </figure>
+              <p>詳細ページ</p>
+            </Link>
+        </article>
+          )
+        },
     },
     renderMark: {
       [ MARKS.CODE ]: children => (
@@ -88,7 +141,7 @@ query($id: String!) {
         return [...children, index > 0 && <br key={index} />, textSegment]
       }, [])
     },
-}
+} 
 
   useEffect(()=>{
     hljs.highlightAll()
@@ -117,7 +170,12 @@ query($id: String!) {
                       alt={ data.contentfulBlogPost.eyecatch.description}
                       style={{ height:"100%" }} 
                       />
-                      : "ないよ"
+                      : <Img 
+                      className="eyecatch" 
+                      fluid={ data.file.childImageSharp.fluid } 
+                      alt="アイキャッチ画像はありません"
+                      style={{ height:"100%" }} 
+                      />
                       }
                     </figure>
                 </div>
@@ -144,13 +202,15 @@ query($id: String!) {
                           <article key={`postlink${link.slug}`}>
                               <time>{ link.publishDateJP }</time>
                               <h5>{link.title}</h5>
-                              <figure>
-                                <Img 
-                                fixed={ link.eyecatch.fixed }
-                                style={{ width:"100%", height:"100%" }}
-                                />
-                              </figure>
-                              <Link to={`/blog/${link.slug}/`} >続きを読む</Link>
+                              <Link to={`/blog/${link.slug}/`} >
+                                <figure>
+                                  <Img 
+                                  fixed={ link.eyecatch.fixed }
+                                  style={{ width:"100%", height:"100%" }}
+                                  />
+                                </figure>
+                                <p>続きを読む</p>
+                              </Link>
                           </article>
                         )) 
                         :<div><p>関連記事はありません</p></div>

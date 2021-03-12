@@ -22,7 +22,7 @@ query($skip: Int!, $limit: Int!) {
           publishDate(formatString: "YYYY年MM月DD日")
           slug
           eyecatch {
-            fluid(maxWidth: 1000){
+            fluid(maxWidth: 640, quality: 90){
                 ...GatsbyContentfulFluid_withWebp
             }
             description

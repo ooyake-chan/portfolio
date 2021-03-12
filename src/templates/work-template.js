@@ -19,7 +19,7 @@ query($id: String!) {
       publishDateJP:publishDate(formatString: "YYYY年MM月")
       publishDate
       eyecatch {
-        fluid(maxWidth: 1000) {
+        fluid(maxWidth: 960) {
           ...GatsbyContentfulFluid_withWebp
         }
         description
@@ -48,7 +48,7 @@ query($id: String!) {
               file{
                 url
               }
-            fluid(maxWidth: 1600) {
+            fluid(maxWidth: 640) {
               ...GatsbyContentfulFluid_withWebp
             }
           }
@@ -85,10 +85,24 @@ const options = {
             if(movie){
                 return <video src={node.data.target.file.url} autoPlay muted loop controls />
             }else{
-                return <img src={node.data.target.file.url } alt=""/>
+                return <a href={ node.data.target.file.url } target="blank">
+                  <Img 
+                  fluid={node.data.target.fluid} 
+                  style={{
+                    width:"100%", 
+                    maxWidth:"640px", 
+                    margin:"0 auto",
+                    marginBottom: "20px",
+                    }} />
+                  </a>
             }
         }
-    }
+    },
+    renderText: text => {
+      return text.split("\n").reduce((children, textSegment, index) => {
+        return [...children, index > 0 && <br key={index} />, textSegment]
+      }, [])
+    },
 }
 
 export default ({ data, pageContext, location })=>{
@@ -135,14 +149,12 @@ export default ({ data, pageContext, location })=>{
                             />
                         </figure>
                     <div className="summary">
-                      <div className="flex">
                         <div className="summary--info">
                             { renderRichText(data.contentfulBlogPost.information, {}) }
                         </div>
                         <div className="summary--concept">
                             { renderRichText(data.contentfulBlogPost.concept, {}) }
                     </div>
-                      </div>
                     </div>
                     <div className="toolmap">
                         <h4 id="work-toolmap">ツールマップ</h4>
