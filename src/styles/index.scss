@@ -29,6 +29,9 @@ h2{
 
 // works
 .home__works{
+    p{
+        line-height: 1.5em;
+    }
     @include a-style;
     @include toolmap-style;
     width: 70%;
@@ -123,6 +126,7 @@ h2{
         h3{
             font-size: 1.25em;
             margin: $margin-texts 0;
+            height: 2em;
         }
         figure{
             width: 20vw;

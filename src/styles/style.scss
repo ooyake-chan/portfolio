@@ -12,26 +12,31 @@ a{
     }
 }
 body{
-    padding: 60px;
+    padding: 30px;
     background-color: $main-color;
     color: $text-color;
-    font-family:  '游ゴシック', 'Arial', 'メイリオ', 'ヒラギノ角ゴ ProN', sans-serif;
+    font-family: "Yu Gothic", 
+    "游ゴシック", 
+    "游ゴシック体", 
+    "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
     font-size: 16px;
     overflow-x: hidden;
+    h1, h2{
+        font-family: Helvetica, sans-serif;
+        font-weight: 600;
+    }
 }
 hr{
     display: block;
     height: 1px;
-    margin: 1em 0;
+    margin: 8px 0;
     border: 0;
     border-top: 1px solid $text-color;
-}
-
-.floatleft{
-    float: left;
-}
-.clear{
-    clear: both;
 }
 .flex{
     display: flex;
@@ -40,7 +45,7 @@ hr{
 .wrapper-contents{
     width: 100%;
     max-width: 800px;
-    margin:0 auto;    
+    margin:0 auto;
     padding: 0 16px;
 }
 
