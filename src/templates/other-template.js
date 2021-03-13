@@ -21,8 +21,20 @@ query($id: String!) {
           ...GatsbyContentfulFluid_withWebp
         }
         description
+        file {
+          details {
+            image {
+              width
+              height
+            }
+          }
+          url
+        }
       }
       information {
+        raw
+      }
+      concept{
         raw
       }
       content {
@@ -34,12 +46,9 @@ query($id: String!) {
               file{
                 url
               }
-            fixed(width: 1600) {
-              width
-              height
-              src
-              srcSet
-            }
+              fluid(maxWidth: 640) {
+                ...GatsbyContentfulFluid_withWebp
+              }
           }
         }
       }
@@ -64,9 +73,23 @@ query($id: String!) {
 const options = {
   renderNode: {
       [ BLOCKS.EMBEDDED_ASSET]: node => {
-          return <Img fixed={node.data.target.fixed} />
+          return  <a href={ node.data.target.file.url } target="blank">
+            <Img 
+                  fluid={node.data.target.fluid} 
+                  style={{
+                    width:"100%", 
+                    maxWidth:"640px", 
+                    margin:"0 auto",
+                    marginBottom: "20px",
+                    }} />
+          </a>
       }
-  }
+  },
+  renderText: text => {
+    return text.split("\n").reduce((children, textSegment, index) => {
+      return [...children, index > 0 && <br key={index} />, textSegment]
+    }, [])
+  },
 }
 
 const localMenu = (
@@ -80,10 +103,17 @@ const localMenu = (
   </ul>
 )
 
-export default ({ data, pageContext })=>{
+export default ({ data, pageContext, location })=>{
     return (
         <Layout local={ localMenu }>
-            <SEO />
+            <SEO
+              pagetitle={data.contentfulBlogPost.title}
+              pagedesc={`${data.contentfulBlogPost.title_sub} `|| ""}
+              pagepath={location.pathname}
+              blogimg={`https:${data.contentfulBlogPost.eyecatch.file.url}`}
+              pageimgw={data.contentfulBlogPost.eyecatch.file.details.image.width}
+              pageimgh={data.contentfulBlogPost.eyecatch.file.details.image.height}
+            />
             <div className="wrapper-contents">
                 <div className="other">
                     <h2>others</h2>
@@ -104,12 +134,11 @@ export default ({ data, pageContext })=>{
                     </figure>
 
                     <div className="summary">
-                        <div className="summary__list">
-                                { 
-                                data.contentfulBlogPost.information
-                                ?renderRichText(data.contentfulBlogPost.information, {})
-                                : ""
-                                 }
+                    <div className="summary--info">
+                            { data.contentfulBlogPost.information && renderRichText(data.contentfulBlogPost.information, {}) }
+                        </div>
+                        <div className="summary--concept">
+                            { data.contentfulBlogPost.concept && renderRichText(data.contentfulBlogPost.concept, {}) }
                         </div>
                     </div>
                     <div className="detail">

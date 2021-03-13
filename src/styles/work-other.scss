@@ -64,16 +64,10 @@
         img, video{
             display: inline-block;
             width: 50%;
-            // max-height: 300px;
             min-height: 200px;
             margin-bottom: $margin-headings;
             object-fit: contain;
         }
-        img +p, video +p{
-            width: 47%;
-            display: block;
-            float: right;
-        } 
     }
 
 }
